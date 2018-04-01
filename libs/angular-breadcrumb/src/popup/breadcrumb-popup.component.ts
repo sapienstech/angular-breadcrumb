@@ -1,14 +1,14 @@
-import {Component, Input, ElementRef, HostListener, ViewChild} from "@angular/core";
+import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import "rxjs/add/operator/mergeMap";
-import {BreadcrumbDropDown, BreadcrumbDropDownItem} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
 import {Router} from "@angular/router";
+import {BreadcrumbDropDown} from "../common/model/dropdown.model";
+import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
 @Component({
-  moduleId: "" + module.id,
   selector: 'dcn-breadcrumb-popup',
-  styleUrls: ["../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.component.css"],
+  styleUrls: ["../breadcrumb/component/breadcrumb.component"],
   template: `
 <div class="popover" >
   <button *ngIf="isShowNextArrow"  #btn3 [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">

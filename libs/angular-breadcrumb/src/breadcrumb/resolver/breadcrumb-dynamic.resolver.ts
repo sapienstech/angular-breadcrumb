@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Breadcrumb} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs/Observable";
+import {Breadcrumb} from "../../common/model/breadcrumb.model";
+
 @Injectable()
 export class BreadcrumbDynamicResolver implements Resolve<Breadcrumb> {
 

@@ -1,11 +1,10 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {Breadcrumb} from "../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
+import {Breadcrumb} from "../../../../libs/angular-breadcrumb/src/common/model/breadcrumb.model";
 
 @Component({
   selector: 'app-root',
-  moduleId: module.id,
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+  styleUrls: ['app.component'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {

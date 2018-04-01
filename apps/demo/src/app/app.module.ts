@@ -5,11 +5,11 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DemoComponent} from "./demo/demo.component";
-import {BreadcrumbModule} from "../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.module";
 import {UsersComponent} from "./demo/users.component";
-import {BreadcrumbResolver} from "../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.resolver";
 import {UserDetailComponent} from "./demo/user-detail.component";
-import {BreadcrumbDynamicResolver} from "../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/BreadcrumbDynamicResolver";
+import {BreadcrumbModule} from "../../../../libs/angular-breadcrumb/src/breadcrumb/breadcrumb.module";
+import {BreadcrumbResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb.resolver";
+import {BreadcrumbDynamicResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb-dynamic.resolver";
 
 
 const community_routes: Routes = [

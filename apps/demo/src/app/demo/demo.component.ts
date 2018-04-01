@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Breadcrumb} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Breadcrumb} from "../../../../../libs/angular-breadcrumb/src/common/model/breadcrumb.model";
 
 @Component({
   selector: 'app-demo',

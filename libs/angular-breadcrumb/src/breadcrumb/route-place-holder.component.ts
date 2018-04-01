@@ -2,14 +2,13 @@
 
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Breadcrumb} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
-import {BREADCRUMB_DATA_KEY} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.service";
-import {BreadcrumbRouterService} from "./breadcrumb-router.service";
+import {BreadcrumbRouterService} from "./service/breadcrumb-router.service";
+import {BREADCRUMB_DATA_KEY} from "./service/breadcrumb.service";
+import {Breadcrumb} from "../common/model/breadcrumb.model";
 
 @Component({
-  moduleId: "" + module.id,
   selector: 'selector',
-  providers:[BreadcrumbRouterService],
+  providers: [BreadcrumbRouterService],
   template: `
 <router-outlet></router-outlet>
 `

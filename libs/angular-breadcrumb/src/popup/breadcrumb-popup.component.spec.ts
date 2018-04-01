@@ -4,7 +4,7 @@ import {By} from "@angular/platform-browser";
 import {BreadcrumbPopupComponent} from "./breadcrumb-popup.component";
 import {SearchBoxComponent} from "./searchbox.component";
 import {RouterLinkStubDirective, RouterStub} from "./router-stub";
-import {BreadcrumbDropDown, BreadcrumbDropDownItem} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
+import {BreadcrumbDropDown, BreadcrumbDropDownItem} from "../../../../angular-breadcrumb/libs/angular-breadcrumb/src/breadcrumb/breadcrumb-model";
 import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
 

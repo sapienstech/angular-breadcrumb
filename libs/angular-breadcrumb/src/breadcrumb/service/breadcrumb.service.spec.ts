@@ -10,7 +10,7 @@ describe('breadcrumbDropDown service', () => {
     });
     it('should have NO  breadcrumbDropDown calling with minimal data', () => {
         activatedRoute = {} as  ActivatedRoute;
-        let currentUrl = "currentUrl";
+        const currentUrl = "currentUrl";
         breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
         expect(breadcrumb.length).toBe(0);
     });
@@ -54,7 +54,7 @@ describe('breadcrumbDropDown service', () => {
             expect(breadcrumb.length).toBe(1);
         });
         it('should have a url according to the snapshot path', () => {
-            expect(currBreadcrumb.url).toBe("/"+activatedRoute.children[1].snapshot.url[0].path);
+            expect(currBreadcrumb.url).toBe("/" + activatedRoute.children[1].snapshot.url[0].path);
         });
         it('should have its label from the configuration', () => {
             expect(currBreadcrumb.breadcrumb.label).toBe(activatedRoute.children[1].routeConfig.path);
@@ -62,15 +62,15 @@ describe('breadcrumbDropDown service', () => {
         it('should have its icon hard coded', () => {
             expect(currBreadcrumb.breadcrumb.icon).toBe("icon-explanation_mark");
         });
-        describe('when data is supplied from the user',()=>{
-            beforeEach(()=>{
-                activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY]={
-                        label:"user defined"
+        describe('when data is supplied from the user', () => {
+            beforeEach(() => {
+                activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
+                        label: "user defined"
                 };
                 breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
                 currBreadcrumb = breadcrumb[0];
             });
-            it('should use the user defined data',()=>{
+            it('should use the user defined data', () => {
                 expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
             });
 

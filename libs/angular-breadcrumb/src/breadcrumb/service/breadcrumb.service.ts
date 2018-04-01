@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {ActivatedRoute, PRIMARY_OUTLET, ActivatedRouteSnapshot} from "@angular/router";
-import {BreadcrumbRoute, Breadcrumb} from "../breadcrumb.model";
-
+import {BreadcrumbRoute} from "../../common/model/route.model";
+import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
 export const BREADCRUMB_DATA_KEY = "breadcrumb";
 
@@ -28,7 +28,7 @@ export class BreadcrumbService {
    * Returns array of BreadcrumbRoute objects that represent the breadcrumbDropDown
    */
   public getBreadcrumbs(route: ActivatedRoute): BreadcrumbRoute[] {
-    let breadcrumbs: BreadcrumbRoute[] = [];
+    const breadcrumbs: BreadcrumbRoute[] = [];
     this.getBreadcrumbsRecursive(route, "", breadcrumbs);
     return breadcrumbs;
   }
@@ -36,7 +36,7 @@ export class BreadcrumbService {
   private getBreadcrumbsRecursive(route: ActivatedRoute, url: string, breadcrumbs: BreadcrumbRoute[]): void {
 
     //get the child routes
-    let children: ActivatedRoute[] = route.children;
+    const children: ActivatedRoute[] = route.children;
 
     //return if there are no more children
     if (!children || children.length === 0) {
@@ -44,25 +44,24 @@ export class BreadcrumbService {
     }
 
     //iterate over each children
-    let child = children.find(child => child.outlet == PRIMARY_OUTLET);
-    if (!child || child.routeConfig.path.length == 0) {
+    const child = children.find(c => c.outlet === PRIMARY_OUTLET);
+    if (!child || child.routeConfig.path.length === 0) {
       return;
     }
 
     //verify the custom property "breadcrumbDropDown" is specified on the route
     if (!child.snapshot.data.hasOwnProperty(BREADCRUMB_DATA_KEY)) {
-      let name = this.buildPlainBreadcrumbData(child);
-      child.snapshot.data[BREADCRUMB_DATA_KEY] = name;
+      child.snapshot.data[BREADCRUMB_DATA_KEY] = this.buildPlainBreadcrumbData(child);
     }
 
     //get the route's URL segment
-    let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
+    const routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
 
     //append route URL to URL
     url += `/${routeURL}`;
 
     //add breadcrumbDropDown
-    let breadcrumb: BreadcrumbRoute = {
+    const breadcrumb: BreadcrumbRoute = {
       breadcrumb: child.snapshot.data[BREADCRUMB_DATA_KEY],
       params: child.snapshot.params,
       url: url

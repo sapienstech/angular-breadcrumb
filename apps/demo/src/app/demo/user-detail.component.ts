@@ -1,8 +1,8 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {BREADCRUMB_DATA_KEY} from "../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
+import {BREADCRUMB_DATA_KEY} from "../../../../../libs/angular-breadcrumb/src/breadcrumb/service/breadcrumb.service";
+
 @Component({
   selector: 'aaa',
   template: `

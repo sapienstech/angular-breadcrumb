@@ -1,8 +1,8 @@
 {
   "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "angular-cli-lib-example",
-    "npmScope": "angular-cli-lib-example",
+    "name": "angular-breadcrumb",
+    "npmScope": "decision",
     "latestMigration": "20180120-update-prettier"
   },
   "e2e": {
@@ -38,7 +38,7 @@
         "lib"
       ]
     },
-    "styleExt": "css",
+    "styleExt": "less",
     "component": {}
   },
   "warnings": {
@@ -96,8 +96,8 @@
       }
     },
     {
-      "name": "ngx-tabs-lib",
-      "root": "libs/ngx-tabs-lib/src",
+      "name": "angular-breadcrumb",
+      "root": "libs/angular-breadcrumb/src",
       "test": "../../../test.js",
       "appRoot": ""
     }

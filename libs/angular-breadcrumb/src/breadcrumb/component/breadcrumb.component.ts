@@ -1,13 +1,13 @@
-import {Component, OnInit, Input} from "@angular/core";
-import {Router, ActivatedRoute, NavigationEnd} from "@angular/router";
+import {Component, Input, OnInit} from "@angular/core";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbService} from "../service/breadcrumb.service";
-import {BreadcrumbRoute, Breadcrumb} from "../breadcrumb.model";
 import {Observable} from "rxjs/Observable";
+import {BreadcrumbRoute} from "../../common/model/route.model";
+import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
 @Component({
-  moduleId: "" + module.id,
   selector: "dcn-breadcrumb",
-  styleUrls: ["breadcrumb.component.css"],
+  styleUrls: ["breadcrumb.component"],
   template: `
  
 <div *ngIf="!hideBreadcrumb" class="breadcrumb">
@@ -28,7 +28,7 @@ import {Observable} from "rxjs/Observable";
 `
 })
 export class BreadcrumbComponent implements OnInit {
-
+  breadcrumbRoutes: BreadcrumbRoute[];
   homeBreadcrumbRoute: BreadcrumbRoute;
 
   @Input()
@@ -42,7 +42,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   isString(val: string|Observable<string>) {
-    return typeof val == "string";
+    return typeof val === "string";
   }
 
   get hideBreadcrumb(){
@@ -52,8 +52,6 @@ export class BreadcrumbComponent implements OnInit {
   get hasRoutes(): boolean {
     return this.calculateHasRoutes();
   }
-
-  public breadcrumbRoutes: BreadcrumbRoute[];
 
   constructor(private breadcrumbService: BreadcrumbService,
               private activatedRoute: ActivatedRoute,
@@ -71,7 +69,7 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-      this.breadcrumbRoutes=[];
+      this.breadcrumbRoutes = [];
       this.breadcrumbRoutes.push(this.homeBreadcrumbRoute);
       this.breadcrumbRoutes.push(...this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root)
         .filter(breadcrumb => !breadcrumb.breadcrumb.hide));

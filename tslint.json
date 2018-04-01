@@ -77,13 +77,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "dcn",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "dcn",
       "kebab-case"
     ],
     "no-output-on-prefix": true,

@@ -27,7 +27,7 @@ describe("breadcrumbComponent", () => {
         RouterLinkStubDirective,
         RouterOutletStubComponent,
         BreadcrumbComponent,
-        DcnBreadcrumbPopupStub
+        BreadcrumbPopupStubComponent
       ]
     });
   }));
@@ -98,7 +98,7 @@ describe("breadcrumbComponent", () => {
         linkParam = {id: 8};
         inputBreadcrumbs = [
           buildBreadcrumbs("url1", undefined),
-          buildBreadcrumbs("url1", true),//invisible
+          buildBreadcrumbs("url1", true),
           buildBreadcrumbs("url3", false),
           buildBreadcrumbs("url4", undefined, linkParam),
         ];
@@ -106,7 +106,7 @@ describe("breadcrumbComponent", () => {
         breadcrumbService.getBreadcrumbs = jasmine.createSpy("getBreadcrumbs").and.returnValue(inputBreadcrumbs);
         router.testEvents = new NavigationEnd(1, "url", "urlAfter");
         fixture.autoDetectChanges();
-        let linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+        const linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
         //get the attached link directive instances using the DebugElement injectors
         links = linkDes
           .map(de => de.injector.get(RouterLinkStubDirective) as RouterLinkStubDirective);
@@ -178,7 +178,7 @@ describe("breadcrumbComponent", () => {
       let pos = 0;
 
       links.map(link => {
-        if (pos != 0) {// the first one is Home
+        if (pos !== 0) {// the first one is Home
           expect(link.linkParams[0]).toBe(visibleBreadcrumbs[pos - 1].url, 'should bind to url');
           //currently I removed params from the routelink
           //expect(link.linkParams[1]).toBe(visibleBreadcrumbs[pos - 1].params, 'should bind to link param');
@@ -187,16 +187,16 @@ describe("breadcrumbComponent", () => {
       });
     });
     it('should have icon for Home link', () => {
-      let pos = 0;
-      let aElement = fixture.debugElement.queryAll(el => el.name === "a")[0];
+      const pos = 0;
+      const aElement = fixture.debugElement.queryAll(el => el.name === "a")[0];
       expect(aElement.nativeElement.innerHTML.indexOf("fa fa-home home-icon")).toBeGreaterThan(-1);
     });
 
     it('should have text and icon for dynamic links', () => {
       let pos = 0;
-      let aElements = fixture.debugElement.queryAll(el => el.name === "a");
+      const aElements = fixture.debugElement.queryAll(el => el.name === "a");
       aElements.map(link => {
-        if (pos != 0) {// the first one is Home
+        if (pos !== 0) {// the first one is Home
           expect(link.nativeElement.innerHTML.indexOf(visibleBreadcrumbs[pos - 1].breadcrumb.label)).toBeGreaterThan(-1);
           expect(link.nativeElement.innerHTML.indexOf(visibleBreadcrumbs[pos - 1].breadcrumb.icon)).toBeGreaterThan(-1);
         }
@@ -205,13 +205,13 @@ describe("breadcrumbComponent", () => {
 
     });
     it('should have breadcrumbDropDown popup and bind to breadcrumbDropDown', () => {
-      let breadcrumbPopups = fixture.debugElement.queryAll(By.directive(DcnBreadcrumbPopupStub));
+      const breadcrumbPopups = fixture.debugElement.queryAll(By.directive(BreadcrumbPopupStubComponent));
       expect(breadcrumbPopups.length).toBe(4);
       let pos = 0;
       breadcrumbPopups
         .map(cmp => {
           if (pos > 0) {
-            let popup = cmp.componentInstance as DcnBreadcrumbPopupStub;
+            const popup = cmp.componentInstance as BreadcrumbPopupStubComponent;
             expect(popup.breadcrumbDropDown).toBe(visibleBreadcrumbs[pos - 1].breadcrumb.dropDown);
           }
           pos++;
@@ -219,7 +219,7 @@ describe("breadcrumbComponent", () => {
     });
   });
 
-  function buildBreadcrumbs(url: string, visible: boolean, params = undefined): BreadcrumbRoute {
+  function buildBreadcrumbs(url: string, visible: boolean, params?): BreadcrumbRoute {
     return {
       breadcrumb: {
         label: url + "_label",
@@ -248,7 +248,7 @@ class RoutingComponent {
   selector: 'dcn-breadcrumb-popup',
   template: ''
 })
-class DcnBreadcrumbPopupStub {
+class BreadcrumbPopupStubComponent {
 
   @Input()
   breadcrumbDropDown: BreadcrumbDropDown;

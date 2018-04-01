@@ -1,5 +1,5 @@
 import {Observable} from "rxjs/Observable";
-import {BreadcrumbDropDownItem} from "../../breadcrumb/breadcrumb.model";
+import {BreadcrumbDropDownItem} from "./dropdown-item.model";
 
 export interface BreadcrumbDropDown {
     popupTitle?: string;

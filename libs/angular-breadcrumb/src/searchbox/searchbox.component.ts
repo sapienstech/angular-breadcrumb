@@ -9,9 +9,8 @@ import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/switch";
 import "rxjs/add/operator/filter";
 @Component({
-  moduleId: ""+module.id,
   selector: 'dcn-search-box',
-  styleUrls:['../../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb.component.css'],
+  styleUrls:['../breadcrumb/component/breadcrumb.component'],
   template: `
         <div class="search-box">
             <input #input type="search"

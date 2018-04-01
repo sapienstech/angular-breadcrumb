@@ -1,9 +1,13 @@
-// export for convenience.
-import {Observable} from "rxjs/Observable";
-export {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
+/* tslint:disable:directive-selector component-selector no-input-rename use-host-property-decorator */
 
+// export for convenience.
 import {Component, Directive, Injectable, Input} from '@angular/core';
 import {NavigationExtras} from '@angular/router';
+// Only implements params and part of snapshot.params
+//region activated-route-stub
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
+export {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
 
 //region router-link
 @Directive({
@@ -48,10 +52,6 @@ export class RouterStub {
 
 }
 
-
-// Only implements params and part of snapshot.params
-//region activated-route-stub
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ActivatedRouteStub {

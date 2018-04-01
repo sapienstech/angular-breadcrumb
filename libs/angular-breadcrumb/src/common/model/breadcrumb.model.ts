@@ -1,5 +1,5 @@
-import {BreadcrumbDropDown} from "../../breadcrumb/breadcrumb.model";
 import {Observable} from "rxjs/Observable";
+import {BreadcrumbDropDown} from "./dropdown.model";
 
 export interface Breadcrumb {
     label: string|Observable<string>;
