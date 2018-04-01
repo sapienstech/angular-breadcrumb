@@ -16,7 +16,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "ngx-tabs-lib": ["libs/ngx-tabs-lib"]
+      "angular-breadcrumb": ["libs/angular-breadcrumb"]
     }
   },
   "exclude": [

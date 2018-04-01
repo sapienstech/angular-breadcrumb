@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
-  "name": "ngx-tabs-lib",
+  "name": "angular-breadcrumb",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -12,6 +12,6 @@
     "lib": {
       "entryFile": "public_api.ts"
     },
-    "dest": "../../ngx-tabs-lib"
+    "dest": "../../angular-breadcrumb"
   }
 }

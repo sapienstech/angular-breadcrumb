@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "ngx-tabs-lib": ["ngx-tabs-lib"]
+      "angular-breadcrumb": ["angular-breadcrumb"]
     }
   }
 }

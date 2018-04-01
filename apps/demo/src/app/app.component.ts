@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ɵTabsComponent as TabsComponent } from 'ngx-tabs-lib';
+import { ɵTabsComponent as TabsComponent } from 'angular-breadcrumb';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({

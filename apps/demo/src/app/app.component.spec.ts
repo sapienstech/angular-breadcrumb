@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
-import { NgxTabsLibModule } from 'ngx-tabs-lib';
+import { NgxTabsLibModule } from 'angular-breadcrumb';
 
 describe('AppComponent', () => {
   let component: AppComponent;

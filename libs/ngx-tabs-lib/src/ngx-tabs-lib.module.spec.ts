@@ -1,4 +1,4 @@
-import { NgxTabsLibModule } from './ngx-tabs-lib.module';
+import { NgxTabsLibModule } from './angular-breadcrumb.module';
 
 describe('NgxTabsLibModule', () => {
   it('should work', () => {
