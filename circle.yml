@@ -1,7 +1,0 @@
-
-machine:
-  node:
-    version: node
-
-  post:
-    - find . -name "TEST-*.xml" -exec cp {} $CIRCLE_TEST_REPORTS \;
