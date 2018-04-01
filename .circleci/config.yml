@@ -18,7 +18,9 @@ jobs:
 
     steps:
       - checkout
-
+      
+      - run: npm install angular-cli@latest -g
+      
       # Download and cache dependencies
       - restore_cache:
           keys:
