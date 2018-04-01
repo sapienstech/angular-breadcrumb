@@ -1,0 +1,161 @@
+.breadcrumb {
+  display: flex;
+  height: 50px;
+  background: #0cb6e7;
+}
+.breadcrumb-holder {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.breadcrumb-holder:first-child {
+  padding-left: 12px;
+}
+.breadcrumb-holder .home-icon {
+  font-size: 1.5em;
+}
+.menu-button {
+  display: flex;
+  font-size: 18px;
+  padding: 0;
+  align-items: center;
+  width: 20px;
+  height: 30px;
+  margin: 0 5px;
+  outline: none;
+  border: none;
+  border-color: transparent;
+  background-color: transparent;
+}
+.menu-button.has-no-popup {
+  pointer-events: none;
+  cursor: default;
+}
+.menu-button.has-popup:hover,
+.menu-button.is-active {
+  pointer-events: auto;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid #fff;
+}
+.menu-button.has-popup:hover .menu-button-icon,
+.menu-button.is-active .menu-button-icon {
+  transform: rotate(90deg);
+  transition: all 0.3s linear;
+}
+.menu-button .menu-button-icon {
+  margin-top: 1px;
+  margin: auto;
+  transition: all 0.3s linear;
+}
+.breadcrumb-link {
+  text-decoration: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+.breadcrumb-link .link-icon {
+  padding-right: 6px;
+}
+.breadcrumb-link .link-icon:hover + span {
+  text-decoration: underline;
+}
+.breadcrumb-link span:hover {
+  text-decoration: underline;
+}
+/* The actual popover */
+.popover {
+  position: relative;
+}
+.popover .breadcrumbPopup {
+  visibility: visible;
+  box-shadow: 1px 2px 1px #e0e0e0;
+  text-align: left;
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  left: -9px;
+  margin-top: 7px;
+  margin-left: 5px;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-menu {
+  max-height: 157px;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-menu-item {
+  height: 40px;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-link {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 0 12px;
+  align-items: center;
+  font-size: 12px;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-link.is-disabled {
+  cursor: default;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-link-icon {
+  font-size: 1.5em;
+  margin-right: 15px;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-link-text {
+  margin-top: 1px;
+}
+.popover .breadcrumbPopup .breadcrumb-popup-search {
+  padding: 12px;
+  display: block;
+}
+.arrowUp {
+  position: absolute;
+  margin-top: -7px;
+  margin-left: 9px;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 9px solid #ffffff;
+}
+.search-box {
+  width: 100%;
+}
+.input-class {
+  line-height: 1;
+  height: 38px;
+  width: 100%;
+  font-size: 14px;
+  padding: 6px;
+  border: 1px solid #DEE5E7;
+  border-radius: 2px;
+}
+.input-class:active,
+.input-class:focus {
+  border-color: #5EA6DD;
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

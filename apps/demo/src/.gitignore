@@ -1,0 +1,3 @@
+### Ignored JS/CSS files ###
+**/src/**/*.js
+**/src/**/*.css

@@ -1,15 +1,16 @@
+<div>
+  <dcn-breadcrumb [homeBreadcrumb]="homeBreadcrumb" class="{{selectedTheme}}"></dcn-breadcrumb>
+</div>
 
-<ngx-tabs>
 
-  <ngx-tab tabTitle="First">
-    First tab's content!
-  </ngx-tab>
-  <ngx-tab tabTitle="Second">
+<router-outlet></router-outlet>
+<br/>
+<br/>
+<br/>
+<h1>
+  Select theme:
+  <select [(ngModel)]="selectedTheme">
+    <option *ngFor="let theme of themes" [value]=theme (select)="selectedTheme=$event">{{theme}}</option>
+  </select>
 
-    <div style="text-align:center">
-      <h1>
-        Welcome to the Second Tab!
-      </h1>
-    </div>
-  </ngx-tab>
-</ngx-tabs>
+</h1>

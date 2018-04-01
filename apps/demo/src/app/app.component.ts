@@ -1,19 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ɵTabsComponent as TabsComponent } from 'angular-breadcrumb';
-import { Container } from '@angular/compiler/src/i18n/i18n_ast';
+import {Component, ViewEncapsulation} from "@angular/core";
+import {Breadcrumb} from "../../../angular-breadcrumb/libs/ngx-tabs-lib/src/breadcrumb/breadcrumb-model";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  moduleId: module.id,
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnInit {
-  @ViewChild(TabsComponent) tabs: TabsComponent;
+export class AppComponent {
 
-  constructor() {}
+  themes = ["winter", "summer", "spring", "decisionTheme"];
+  selectedTheme: "NO_THEME";
 
-  ngOnInit() {
-    console.log(this.tabs);
+  homeBreadcrumb:Breadcrumb={
+      label: "",
+      icon: "fa fa-home"
+    ,
+    dropDown:{
+      items:[
+        {label:"Products",url:"products"},
+        {label:"Users",url:"users"},
+        ]
+    }
   }
-
 }
