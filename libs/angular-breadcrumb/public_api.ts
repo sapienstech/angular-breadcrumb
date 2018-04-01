@@ -1,2 +1,2 @@
-export * from '../../../../angular-breadcrumb/libs/angular-breadcrumb/src/breadcrumb/breadcrumb.component'
-export * from '../../../../angular-breadcrumb/libs/angular-breadcrumb/src/breadcrumb/breadcrumb.module'
+export * from 'src/breadcrumb/component/breadcrumb.component'
+export * from 'src/breadcrumb/breadcrumb.module'

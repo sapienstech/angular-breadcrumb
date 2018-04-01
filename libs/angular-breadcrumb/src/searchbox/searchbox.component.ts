@@ -10,7 +10,7 @@ import "rxjs/add/operator/switch";
 import "rxjs/add/operator/filter";
 @Component({
   selector: 'dcn-search-box',
-  styleUrls:['../breadcrumb/component/breadcrumb.component'],
+  styleUrls:['../breadcrumb/component/breadcrumb.component.less'],
   template: `
         <div class="search-box">
             <input #input type="search"

@@ -7,7 +7,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
 @Component({
   selector: "dcn-breadcrumb",
-  styleUrls: ["breadcrumb.component"],
+  styleUrls: ["breadcrumb.component.less"],
   template: `
  
 <div *ngIf="!hideBreadcrumb" class="breadcrumb">

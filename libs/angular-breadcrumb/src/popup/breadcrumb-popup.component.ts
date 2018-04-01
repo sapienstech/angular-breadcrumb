@@ -8,7 +8,7 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
 @Component({
   selector: 'dcn-breadcrumb-popup',
-  styleUrls: ["../breadcrumb/component/breadcrumb.component"],
+  styleUrls: ["../breadcrumb/component/breadcrumb.component.less"],
   template: `
 <div class="popover" >
   <button *ngIf="isShowNextArrow"  #btn3 [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
