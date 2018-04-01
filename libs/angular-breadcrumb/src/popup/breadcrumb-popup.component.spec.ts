@@ -2,9 +2,10 @@ import {Component, DebugElement, Input} from "@angular/core";
 import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {BreadcrumbPopupComponent} from "./breadcrumb-popup.component";
-import {SearchBoxComponent} from "./searchbox.component";
-import {RouterLinkStubDirective, RouterStub} from "./router-stub";
-import {BreadcrumbDropDown, BreadcrumbDropDownItem} from "../../../../angular-breadcrumb/libs/angular-breadcrumb/src/breadcrumb/breadcrumb-model";
+import {SearchBoxComponent} from "../searchbox/searchbox.component";
+import {RouterLinkStubDirective, RouterStub} from "../breadcrumb/test-utils/router-stub";
+import {BreadcrumbDropDown} from "../common/model/dropdown.model";
+import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
 

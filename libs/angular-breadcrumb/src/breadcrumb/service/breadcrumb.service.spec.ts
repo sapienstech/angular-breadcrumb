@@ -1,6 +1,6 @@
 import {BreadcrumbService,  BREADCRUMB_DATA_KEY} from "./breadcrumb.service";
 import {ActivatedRoute, PRIMARY_OUTLET} from "@angular/router";
-import {BreadcrumbRoute} from "../breadcrumb.model";
+import {BreadcrumbRoute} from "../../common/model/route.model";
 describe('breadcrumbDropDown service', () => {
     let breadcrumbService: BreadcrumbService;
     let breadcrumb: BreadcrumbRoute[];
