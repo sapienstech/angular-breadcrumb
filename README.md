@@ -1,4 +1,5 @@
 # Angular Breadcrumb
+[![CircleCI](https://circleci.com/gh/sapienstech/angular-breadcrumb.svg?style=svg)](https://circleci.com/gh/sapienstech/angular-breadcrumb)
 
 This project is a fork of the now deprecated https://www.npmjs.com/package/ng2-navigator  
 It was transitioned based on https://github.com/jasonaden/angular-cli-lib-example to have proper bundling and AoT support
