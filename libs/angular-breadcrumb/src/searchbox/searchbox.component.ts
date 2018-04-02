@@ -36,7 +36,7 @@ export class SearchBoxComponent implements OnInit {
   @Output()
   results: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  private filterText: string = "";
+  filterText: string = "";
 
 
   @ViewChild('input') input: ElementRef;
