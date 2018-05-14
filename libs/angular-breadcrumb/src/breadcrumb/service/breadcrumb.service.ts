@@ -74,7 +74,7 @@ export class BreadcrumbService {
   }
 
   private hasChildren(child: ActivatedRoute | undefined) {
-    return child.routeConfig.children && child.routeConfig.children.length > 0;
+    return child.children && child.children.length > 0;
   }
 
   private buildPlainBreadcrumbData(child: ActivatedRoute): Breadcrumb {
