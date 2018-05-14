@@ -15,6 +15,36 @@ describe('breadcrumbDropDown service', () => {
         expect(breadcrumb.length).toBe(0);
     });
 
+    it(`should have breadcrumb when there is empty path with children`,()=>{
+      activatedRoute = {
+        children: [
+          {outlet: "NO_PRIMARY"},
+          {
+            outlet: PRIMARY_OUTLET,
+            routeConfig: {path: ""},
+            snapshot: {
+              data: {breadcrumb: {hide: true}},
+              url: []
+            },
+              children: [
+                {
+                  outlet: PRIMARY_OUTLET,
+                  routeConfig: {path: "myUrlConfig2"},
+                  snapshot: {
+                    data: [],
+                    url: [{
+                      path: "myUrl2"
+                    }]
+                  }
+                }
+              ]
+          }
+        ]
+      } as  ActivatedRoute;
+      breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
+      expect(breadcrumb.length).toBe(2);
+      expect(breadcrumb[1].breadcrumb.label).toBe('myUrlConfig2');
+    });
     it('should have NO  breadcrumbDropDown when there is an empty children array', () => {
         activatedRoute = {
             children: []
