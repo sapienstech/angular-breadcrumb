@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {ActivatedRoute, PRIMARY_OUTLET, ActivatedRouteSnapshot} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, PRIMARY_OUTLET} from "@angular/router";
 import {BreadcrumbRoute} from "../../common/model/route.model";
 import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
@@ -45,7 +45,7 @@ export class BreadcrumbService {
 
     //iterate over each children
     const child = children.find(c => c.outlet === PRIMARY_OUTLET);
-    if (!child || child.routeConfig.path.length === 0) {
+    if (!child || (child.routeConfig.path.length === 0 && !this.hasChildren(child))) {
       return;
     }
 
@@ -71,6 +71,10 @@ export class BreadcrumbService {
     return this.getBreadcrumbsRecursive(child, url, breadcrumbs);
 
 
+  }
+
+  private hasChildren(child: ActivatedRoute | undefined) {
+    return child.routeConfig.children && child.routeConfig.children.length > 0;
   }
 
   private buildPlainBreadcrumbData(child: ActivatedRoute): Breadcrumb {
