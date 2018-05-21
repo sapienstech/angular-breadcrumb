@@ -15,7 +15,7 @@ describe('breadcrumbDropDown service', () => {
         expect(breadcrumb.length).toBe(0);
     });
 
-    it(`should have breadcrumb when hideChildren:true`,()=>{
+    it(`should not have breadcrumb when hideChildren:true`,()=>{
     activatedRoute = {
       children: [
         {outlet: "NO_PRIMARY"},
