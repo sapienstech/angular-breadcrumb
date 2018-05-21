@@ -45,12 +45,18 @@ export class BreadcrumbService {
 
     //iterate over each children
     const child = children.find(c => c.outlet === PRIMARY_OUTLET);
+    let breadCrumbData: Breadcrumb = child && child.snapshot.data && child.snapshot.data[BREADCRUMB_DATA_KEY];
+
+    if (breadCrumbData && breadCrumbData.hideChildren) {
+      return;
+    }
+
     if (!child || (child.routeConfig.path.length === 0 && !this.hasChildren(child))) {
       return;
     }
 
     //verify the custom property "breadcrumbDropDown" is specified on the route
-    if (!child.snapshot.data.hasOwnProperty(BREADCRUMB_DATA_KEY)) {
+    if (!breadCrumbData) {
       child.snapshot.data[BREADCRUMB_DATA_KEY] = this.buildPlainBreadcrumbData(child);
     }
 
