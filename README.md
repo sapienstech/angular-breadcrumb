@@ -12,7 +12,7 @@ It was transitioned based on https://github.com/jasonaden/angular-cli-lib-exampl
    Let the user navigate forward by selecting options in a dropdown from the route.
    Enable hiding routes
  ```
-Some images from the demo
+Some images from the demo test
 
 # Blue theme
 
