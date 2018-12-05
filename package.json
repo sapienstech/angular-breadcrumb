@@ -1,6 +1,6 @@
 {
   "name": "@decision/angular-breadcrumb-parent",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
