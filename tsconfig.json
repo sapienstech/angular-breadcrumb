@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -16,8 +17,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "angular-breadcrumb": ["libs/angular-breadcrumb"]
-    }
+      "angular-breadcrumb": [
+        "libs/angular-breadcrumb"
+      ]
+    },
+    "module": "es2015"
   },
   "exclude": [
     "node_modules",
