@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from "rxjs";
 import {BREADCRUMB_DATA_KEY} from "../../../../../libs/angular-breadcrumb/src/breadcrumb/service/breadcrumb.service";
 
 @Component({

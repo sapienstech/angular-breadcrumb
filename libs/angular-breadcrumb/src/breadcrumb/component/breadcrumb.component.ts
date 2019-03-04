@@ -1,7 +1,9 @@
+
+import {filter} from 'rxjs/operators';
 import {Component, Input, OnInit} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbService} from "../service/breadcrumb.service";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {BreadcrumbRoute} from "../../common/model/route.model";
 import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
@@ -68,7 +70,7 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
       this.breadcrumbRoutes = [];
       this.breadcrumbRoutes.push(this.homeBreadcrumbRoute);
       this.breadcrumbRoutes.push(...this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root)

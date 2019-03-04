@@ -1,5 +1,6 @@
+
+import {of as observableOf, Observable} from 'rxjs';
 import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
-import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import "rxjs/add/operator/mergeMap";
 import {Router} from "@angular/router";
@@ -107,7 +108,7 @@ export class BreadcrumbPopupComponent {
   search(query: string): Observable<any[]> {
     let search = query.toUpperCase();
     let result = this.allItems.filter(item => item.label.toLocaleUpperCase().indexOf(search) > -1);
-    return Observable.of(result);
+    return observableOf(result);
   }
 
   setInitialFilter(event: MouseEvent) {

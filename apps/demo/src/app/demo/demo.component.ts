@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {BehaviorSubject} from "rxjs";
 import {Breadcrumb} from "../../../../../libs/angular-breadcrumb/src/common/model/breadcrumb.model";
 
 @Component({
