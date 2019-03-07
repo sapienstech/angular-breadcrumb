@@ -1,8 +1,6 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/mergeMap";
 import {Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";

@@ -1,16 +1,10 @@
 
-import {of as observableOf, merge as observableMerge, fromEvent as observableFromEvent, Observable} from 'rxjs';
+import {of as observableOf, merge as observableMerge, fromEvent as observableFromEvent, Observable,fromEvent, merge, of } from 'rxjs';
 
-import {switchAll, map, filter, debounceTime, tap} from 'rxjs/operators';
+import {switchAll, map, filter, debounceTime, tap } from 'rxjs/operators';
 import {Component, OnInit, EventEmitter, ElementRef, Input, Output, ViewChild} from "@angular/core";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/observable/merge";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/switch";
-import "rxjs/add/operator/filter";
+
+
 @Component({
   selector: 'dcn-search-box',
   styleUrls:['../breadcrumb/component/breadcrumb.component.less'],
