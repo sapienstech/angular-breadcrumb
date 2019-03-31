@@ -1,3 +1,5 @@
+
+import {of as observableOf, Observable} from 'rxjs';
 import {Component, DebugElement, Input} from "@angular/core";
 import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
@@ -6,7 +8,6 @@ import {SearchBoxComponent} from "../searchbox/searchbox.component";
 import {RouterLinkStubDirective, RouterStub} from "../breadcrumb/test-utils/router-stub";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
-import {Observable} from "rxjs/Observable";
 import {Router} from "@angular/router";
 
 describe("Breadcrumb Popup Component", () => {
@@ -195,7 +196,7 @@ describe("Breadcrumb Popup Component", () => {
       ];
 
       function getBreadCrumbItem(): Observable<BreadcrumbDropDownItem[]> {
-        return Observable.of(breadcrumbDropDownItem);
+        return observableOf(breadcrumbDropDownItem);
       };
       beforeEach(async(() => {
         inputBreadcrumb.getItems = getBreadCrumbItem;

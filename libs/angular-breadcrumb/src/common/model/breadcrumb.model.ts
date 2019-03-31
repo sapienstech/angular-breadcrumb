@@ -1,4 +1,4 @@
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 import {BreadcrumbDropDown} from "./dropdown.model";
 
 export interface Breadcrumb {

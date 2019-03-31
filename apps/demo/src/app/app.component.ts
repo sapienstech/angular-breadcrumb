@@ -4,7 +4,7 @@ import {Breadcrumb} from "../../../../libs/angular-breadcrumb/src/common/model/b
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component'],
+  styleUrls: ['app.component.less'],
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
