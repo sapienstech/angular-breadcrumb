@@ -5,7 +5,7 @@ import {Component, Directive, Injectable, Input} from '@angular/core';
 import {NavigationExtras} from '@angular/router';
 // Only implements params and part of snapshot.params
 //region activated-route-stub
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {BehaviorSubject} from 'rxjs';
 
 export {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
 

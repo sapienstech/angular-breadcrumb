@@ -1,13 +1,10 @@
+
+import {of as observableOf, merge as observableMerge, fromEvent as observableFromEvent, Observable,fromEvent, merge, of } from 'rxjs';
+
+import {switchAll, map, filter, debounceTime, tap } from 'rxjs/operators';
 import {Component, OnInit, EventEmitter, ElementRef, Input, Output, ViewChild} from "@angular/core";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/observable/fromEvent";
-import "rxjs/add/observable/merge";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/switch";
-import "rxjs/add/operator/filter";
+
+
 @Component({
   selector: 'dcn-search-box',
   styleUrls:['../breadcrumb/component/breadcrumb.component.less'],
@@ -48,21 +45,21 @@ export class SearchBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.input.nativeElement.focus();
-    let keyUp = Observable.fromEvent(this.input.nativeElement, 'keyup')
-      .map((e: any) => e.target.value)
-      .filter((text: string) => text.length >= this.minLength)
-      .debounceTime(250);
+    let keyUp = observableFromEvent(this.input.nativeElement, 'keyup').pipe(
+      map((e: any) => e.target.value),
+      filter((text: string) => text.length >= this.minLength),
+      debounceTime(250),);
 
-    let search = Observable.fromEvent(this.input.nativeElement, "search")
-      .do(() => this.filterText = "")
-      .map(e => "");
+    let search = observableFromEvent(this.input.nativeElement, "search").pipe(
+      tap(() => this.filterText = ""),
+      map(e => ""),);
 
 
-    Observable.merge(keyUp, search)
-      .do(() => this.loading.next(true))
-      .map((query: string) =>
-        this.searchData ? this.searchData(query, this.maxResults) : Observable.of([]))
-      .switch()
+    observableMerge(keyUp, search).pipe(
+      tap(() => this.loading.next(true)),
+      map((query: string) =>
+        this.searchData ? this.searchData(query, this.maxResults) : observableOf([])),
+      switchAll(),)
       .subscribe(
         (results: any[]) => {
           this.loading.next(false);

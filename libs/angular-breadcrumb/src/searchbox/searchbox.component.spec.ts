@@ -1,7 +1,8 @@
+
+import {of as observableOf, Observable} from 'rxjs';
 import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
 import {Component} from "@angular/core";
 import {By} from "@angular/platform-browser";
-import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of"
 import {CommonModule} from "@angular/common";
 import {SearchBoxComponent} from "./searchbox.component";
@@ -152,7 +153,7 @@ class TestComponent {
     if (query == ON_ERROR_STRING) {
       throw "something went wrong";
     }
-    return Observable.of(this.searchDataMocked);
+    return observableOf(this.searchDataMocked);
   }
 
   onSearchResult(filteredData) {
