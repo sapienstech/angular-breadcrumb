@@ -1,7 +1,8 @@
-import {BreadcrumbService,  BREADCRUMB_DATA_KEY} from "./breadcrumb.service";
+import {BREADCRUMB_DATA_KEY, BreadcrumbService} from "./breadcrumb.service";
 import {ActivatedRoute, PRIMARY_OUTLET} from "@angular/router";
 import {BreadcrumbRoute} from "../../common/model/route.model";
-describe('breadcrumbDropDown service', () => {
+
+describe('breadcrumb service', () => {
     let breadcrumbService: BreadcrumbService;
     let breadcrumb: BreadcrumbRoute[];
     let activatedRoute;
@@ -91,6 +92,7 @@ describe('breadcrumbDropDown service', () => {
 
     describe('when not data is available', () => {
         let currBreadcrumb: BreadcrumbRoute;
+      let breadcrumbCount: number;
         beforeEach(() => {
             activatedRoute = {
                 children: [
@@ -109,6 +111,7 @@ describe('breadcrumbDropDown service', () => {
             } as  ActivatedRoute;
             breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
             currBreadcrumb = breadcrumb[0];
+          breadcrumbCount = breadcrumb.length;
         });
         it('should have only one breadcrumbDropDown', () => {
             expect(breadcrumb.length).toBe(1);
@@ -125,7 +128,8 @@ describe('breadcrumbDropDown service', () => {
         describe('when data is supplied from the user', () => {
             beforeEach(() => {
                 activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
-                        label: "user defined"
+                  label: "user defined",
+                  children: [{breadcrumb: {label: "extra"}}]
                 };
                 breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
                 currBreadcrumb = breadcrumb[0];
@@ -133,9 +137,19 @@ describe('breadcrumbDropDown service', () => {
             it('should use the user defined data', () => {
                 expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
             });
+          it('should add extra breadcrumbs', () => {
+            expect(breadcrumb.length).toBe(breadcrumbCount + 1);
+          })
 
         });
 
     });
+
+  it('should notify when request for refresh', () => {
+    let wasRefreshRequest = false;
+    breadcrumbService.refreshed$.subscribe(() => wasRefreshRequest = true);
+    breadcrumbService.refresh();
+    expect(wasRefreshRequest).toBe(true);
+  })
 
 });

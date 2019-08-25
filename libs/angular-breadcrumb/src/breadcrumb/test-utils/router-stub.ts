@@ -19,6 +19,8 @@ export {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router'
 export class RouterLinkStubDirective {
   @Input('routerLink') linkParams: any;
   navigatedTo: any = null;
+  @Input()
+  queryParams;
 
   onClick() {
     this.navigatedTo = this.linkParams;
