@@ -9,7 +9,6 @@ export const BREADCRUMB_DATA_KEY = "breadcrumb";
 
 @Injectable()
 export class BreadcrumbService {
-  private breadcrumbs: BreadcrumbRoute[];
   private refreshed = new Subject();
 
   get refreshed$() {
@@ -90,9 +89,7 @@ export class BreadcrumbService {
 
   private addBreadcrumbExtensions(breadcrumb: BreadcrumbRoute, breadcrumbs: BreadcrumbRoute[]) {
     if (breadcrumb.breadcrumb.children) {
-      breadcrumb.breadcrumb.children.forEach(child => {
-        breadcrumbs.push(child);
-      });
+      breadcrumbs.push(...breadcrumb.breadcrumb.children);
     }
   }
 

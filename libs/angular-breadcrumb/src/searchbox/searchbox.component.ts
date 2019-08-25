@@ -1,5 +1,5 @@
 
-import {of as observableOf, merge as observableMerge, fromEvent as observableFromEvent, Observable,fromEvent, merge, of } from 'rxjs';
+import {of as observableOf, merge as observableMerge, fromEvent as observableFromEvent, Observable} from 'rxjs';
 
 import {switchAll, map, filter, debounceTime, tap } from 'rxjs/operators';
 import {Component, OnInit, EventEmitter, ElementRef, Input, Output, ViewChild} from "@angular/core";

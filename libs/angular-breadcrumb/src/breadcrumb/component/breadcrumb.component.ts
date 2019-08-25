@@ -74,18 +74,15 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     this.router.events.pipe(
       takeWhile(() => !this.destroyed),
       filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      this.abcdEfg();
+      this.refreshBreadcrumbRoutes();
     });
     this.breadcrumbService
       .refreshed$
-      .pipe(
-        takeWhile(() => !this.destroyed)
-      ).subscribe(() => {
-      this.abcdEfg();
-    })
+      .pipe(takeWhile(() => !this.destroyed))
+      .subscribe(() => this.refreshBreadcrumbRoutes());
   }
 
-  private abcdEfg() {
+  private refreshBreadcrumbRoutes() {
     this.breadcrumbRoutes = [];
     this.breadcrumbRoutes.push(this.homeBreadcrumbRoute);
     this.breadcrumbRoutes.push(...this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root)
