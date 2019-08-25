@@ -28,6 +28,16 @@ export class DemoComponent implements OnInit {
     this.activatedRoute.data.subscribe((data: {breadcrumb: Breadcrumb}) => {
       data.breadcrumb = {
         label: productSubject,
+        children: [
+          {
+            breadcrumb: {
+              label: "extra from code",
+              icon: "fa fa-globe",
+            },
+            url: "/users/details/1",
+            params: undefined
+          }
+        ],
         icon: "fa fa-globe"
         // dropDown: {
         //   items: [

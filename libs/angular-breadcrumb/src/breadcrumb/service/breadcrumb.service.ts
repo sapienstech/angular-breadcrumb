@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRoute, ActivatedRouteSnapshot, PRIMARY_OUTLET} from "@angular/router";
 import {BreadcrumbRoute} from "../../common/model/route.model";
 import {Breadcrumb} from "../../common/model/breadcrumb.model";
+import {Subject} from "rxjs/index";
 
 export const BREADCRUMB_DATA_KEY = "breadcrumb";
 
@@ -9,11 +10,19 @@ export const BREADCRUMB_DATA_KEY = "breadcrumb";
 @Injectable()
 export class BreadcrumbService {
   private breadcrumbs: BreadcrumbRoute[];
+  private refreshed = new Subject();
+
+  get refreshed$() {
+    return this.refreshed.asObservable();
+  }
 
   constructor() {
 
   }
 
+  refresh() {
+    this.refreshed.next();
+  }
   /**
    *
    * returns the urls up to current snapshot
@@ -73,10 +82,18 @@ export class BreadcrumbService {
       url: url
     };
     breadcrumbs.push(breadcrumb);
-
+    this.addBreadcrumbExtensions(breadcrumb, breadcrumbs);
     return this.getBreadcrumbsRecursive(child, url, breadcrumbs);
 
 
+  }
+
+  private addBreadcrumbExtensions(breadcrumb: BreadcrumbRoute, breadcrumbs: BreadcrumbRoute[]) {
+    if (breadcrumb.breadcrumb.children) {
+      breadcrumb.breadcrumb.children.forEach(child => {
+        breadcrumbs.push(child);
+      });
+    }
   }
 
   private hasChildren(child: ActivatedRoute | undefined) {
