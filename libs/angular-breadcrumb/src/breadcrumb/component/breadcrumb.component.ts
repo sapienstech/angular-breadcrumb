@@ -1,4 +1,3 @@
-///<reference path="../../../../../node_modules/@angular/core/src/metadata/lifecycle_hooks.d.ts"/>
 import {filter, takeWhile} from 'rxjs/operators';
 import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
