@@ -126,19 +126,39 @@ describe('breadcrumb service', () => {
             expect(currBreadcrumb.breadcrumb.icon).toBe("icon-explanation_mark");
         });
         describe('when data is supplied from the user', () => {
-            beforeEach(() => {
-                activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
-                  label: "user defined",
-                  children: [{breadcrumb: {label: "extra"}}]
-                };
-                breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
-                currBreadcrumb = breadcrumb[0];
-            });
-            it('should use the user defined data', () => {
-                expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
-            });
+          beforeEach(() => {
+            activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
+              label: "user defined",
+              children: [
+                {breadcrumb: {label: "extra"}},
+                {breadcrumb: {label: "addition"}}
+              ]
+            };
+            activatedRoute.children[1].children = [{
+              uriel: "a child",
+              outlet: PRIMARY_OUTLET,
+              routeConfig: {path: "aa"},
+              snapshot: {
+                data: {[BREADCRUMB_DATA_KEY]: {label: "the end"}},
+                url: [{path: "myUrl3"}]
+              },
+
+            }
+            ];
+            breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
+            currBreadcrumb = breadcrumb[0];
+          });
+          it('should use the user defined data', () => {
+            expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
+          });
           it('should add extra breadcrumbs', () => {
-            expect(breadcrumb.length).toBe(breadcrumbCount + 1);
+            expect(breadcrumb.length).toBe(4);
+          });
+          it('should have the breadcrumb in this order', () => {
+            expect(breadcrumb[0].breadcrumb.label).toBe("user defined");
+            expect(breadcrumb[1].breadcrumb.label).toBe("extra");
+            expect(breadcrumb[2].breadcrumb.label).toBe("addition");
+            expect(breadcrumb[3].breadcrumb.label).toBe("the end");
           })
 
         });
