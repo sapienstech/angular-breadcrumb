@@ -63,7 +63,6 @@ const community_routes: Routes = [
               icon: "fa fa-globe",
             },
             url: "/users/details/2",
-           // params: {id: "2"}
           }
         ],
       }
