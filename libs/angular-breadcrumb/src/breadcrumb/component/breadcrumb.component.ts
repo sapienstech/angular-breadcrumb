@@ -15,7 +15,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
   <ng-container *ngFor="let route of breadcrumbRoutes; let inx = index; let isLast=last" >
     <div *ngIf="!route.breadcrumb.hide" class="breadcrumb-holder">
-      <a [routerLink]="[route.url]" [queryParams]=route.params class="breadcrumb-link">
+      <a [routerLink]="[route.url]" [queryParams]="route.params" class="breadcrumb-link">
         <i *ngIf="route.breadcrumb.icon && inx==0" class="{{route.breadcrumb.icon}} home-icon"></i>
         <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
         <span *ngIf="!isString(route.breadcrumb.label)">{{route.breadcrumb.label |async}}</span>
