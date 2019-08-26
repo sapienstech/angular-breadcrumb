@@ -1,6 +1,5 @@
-
-import {filter} from 'rxjs/operators';
-import {Component, Input, OnInit} from "@angular/core";
+import {filter, takeWhile} from 'rxjs/operators';
+import {Component, Input, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbService} from "../service/breadcrumb.service";
 import {Observable} from "rxjs";
@@ -16,7 +15,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
   <ng-container *ngFor="let route of breadcrumbRoutes; let inx = index; let isLast=last" >
     <div *ngIf="!route.breadcrumb.hide" class="breadcrumb-holder">
-      <a [routerLink]="[route.url]" class="breadcrumb-link">
+      <a [routerLink]="[route.url]" [queryParams]="route.params" class="breadcrumb-link">
         <i *ngIf="route.breadcrumb.icon && inx==0" class="{{route.breadcrumb.icon}} home-icon"></i>
         <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
         <span *ngIf="!isString(route.breadcrumb.label)">{{route.breadcrumb.label |async}}</span>
@@ -29,12 +28,13 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
 
 `
 })
-export class BreadcrumbComponent implements OnInit {
+export class BreadcrumbComponent implements OnInit, OnDestroy {
   breadcrumbRoutes: BreadcrumbRoute[];
   homeBreadcrumbRoute: BreadcrumbRoute;
 
   @Input()
   hideWhenNothingToShow = false;
+  private destroyed = false;
 
   @Input()
   set homeBreadcrumb(breadcrumb: Breadcrumb) {
@@ -70,12 +70,26 @@ export class BreadcrumbComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
-      this.breadcrumbRoutes = [];
-      this.breadcrumbRoutes.push(this.homeBreadcrumbRoute);
-      this.breadcrumbRoutes.push(...this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root)
-        .filter(breadcrumb => !breadcrumb.breadcrumb.hide));
+    this.router.events.pipe(
+      takeWhile(() => !this.destroyed),
+      filter(event => event instanceof NavigationEnd)).subscribe(event => {
+      this.refreshBreadcrumbRoutes();
     });
+    this.breadcrumbService
+      .refreshed$
+      .pipe(takeWhile(() => !this.destroyed))
+      .subscribe(() => this.refreshBreadcrumbRoutes());
+  }
+
+  private refreshBreadcrumbRoutes() {
+    this.breadcrumbRoutes = [];
+    this.breadcrumbRoutes.push(this.homeBreadcrumbRoute);
+    this.breadcrumbRoutes.push(...this.breadcrumbService.getBreadcrumbs(this.activatedRoute.root)
+      .filter(breadcrumb => !breadcrumb.breadcrumb.hide));
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
   }
 
   private calculateHasRoutes(){
