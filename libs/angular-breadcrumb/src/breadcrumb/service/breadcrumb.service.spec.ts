@@ -1,7 +1,8 @@
-import {BreadcrumbService,  BREADCRUMB_DATA_KEY} from "./breadcrumb.service";
+import {BREADCRUMB_DATA_KEY, BreadcrumbService} from "./breadcrumb.service";
 import {ActivatedRoute, PRIMARY_OUTLET} from "@angular/router";
 import {BreadcrumbRoute} from "../../common/model/route.model";
-describe('breadcrumbDropDown service', () => {
+
+describe('breadcrumb service', () => {
     let breadcrumbService: BreadcrumbService;
     let breadcrumb: BreadcrumbRoute[];
     let activatedRoute;
@@ -91,6 +92,7 @@ describe('breadcrumbDropDown service', () => {
 
     describe('when not data is available', () => {
         let currBreadcrumb: BreadcrumbRoute;
+      let breadcrumbCount: number;
         beforeEach(() => {
             activatedRoute = {
                 children: [
@@ -109,6 +111,7 @@ describe('breadcrumbDropDown service', () => {
             } as  ActivatedRoute;
             breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
             currBreadcrumb = breadcrumb[0];
+          breadcrumbCount = breadcrumb.length;
         });
         it('should have only one breadcrumbDropDown', () => {
             expect(breadcrumb.length).toBe(1);
@@ -123,19 +126,50 @@ describe('breadcrumbDropDown service', () => {
             expect(currBreadcrumb.breadcrumb.icon).toBe("icon-explanation_mark");
         });
         describe('when data is supplied from the user', () => {
-            beforeEach(() => {
-                activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
-                        label: "user defined"
-                };
-                breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
-                currBreadcrumb = breadcrumb[0];
-            });
-            it('should use the user defined data', () => {
-                expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
-            });
+          beforeEach(() => {
+            activatedRoute.children[1].snapshot.data[BREADCRUMB_DATA_KEY] = {
+              label: "user defined",
+              children: [
+                {breadcrumb: {label: "extra"}},
+                {breadcrumb: {label: "addition"}}
+              ]
+            };
+            activatedRoute.children[1].children = [{
+              uriel: "a child",
+              outlet: PRIMARY_OUTLET,
+              routeConfig: {path: "aa"},
+              snapshot: {
+                data: {[BREADCRUMB_DATA_KEY]: {label: "the end"}},
+                url: [{path: "myUrl3"}]
+              },
+
+            }
+            ];
+            breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
+            currBreadcrumb = breadcrumb[0];
+          });
+          it('should use the user defined data', () => {
+            expect(currBreadcrumb.breadcrumb.label).toBe("user defined");
+          });
+          it('should add extra breadcrumbs', () => {
+            expect(breadcrumb.length).toBe(4);
+          });
+          it('should have the breadcrumb in this order', () => {
+            expect(breadcrumb[0].breadcrumb.label).toBe("user defined");
+            expect(breadcrumb[1].breadcrumb.label).toBe("extra");
+            expect(breadcrumb[2].breadcrumb.label).toBe("addition");
+            expect(breadcrumb[3].breadcrumb.label).toBe("the end");
+          })
 
         });
 
     });
+
+  it('should notify when request for refresh', () => {
+    let wasRefreshRequest = false;
+    breadcrumbService.refreshed$.subscribe(() => wasRefreshRequest = true);
+    breadcrumbService.refresh();
+    expect(wasRefreshRequest).toBe(true);
+  })
 
 });

@@ -1,17 +1,18 @@
 import {Component, Input} from "@angular/core";
-import {TestBed, async} from "@angular/core/testing";
-import {Router, ActivatedRoute, NavigationEnd} from "@angular/router";
+import {async, TestBed} from "@angular/core/testing";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbComponent} from "./breadcrumb.component";
 import {
+  ActivatedRouteStub,
   RouterLinkStubDirective,
   RouterOutletStubComponent,
-  ActivatedRouteStub,
   RouterStub
 } from "../test-utils/router-stub";
 import {By} from "@angular/platform-browser";
 import {BreadcrumbService} from "../service/breadcrumb.service";
 import {BreadcrumbRoute} from "../../common/model/route.model";
 import {BreadcrumbDropDown} from "../../common/model/dropdown.model";
+import Spy = jasmine.Spy;
 
 
 describe("breadcrumbComponent", () => {
@@ -19,7 +20,7 @@ describe("breadcrumbComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        {provide: BreadcrumbService, useValue: {}},
+        BreadcrumbService,
         {provide: Router, useClass: RouterStub},
         {provide: ActivatedRoute, useClass: ActivatedRouteStub}
       ],
@@ -218,6 +219,16 @@ describe("breadcrumbComponent", () => {
           pos++;
         });
     });
+
+    it('should listen to refresh event', async(() => {
+      let callsBefore = (breadcrumbService.getBreadcrumbs as Spy).calls.count();
+      breadcrumbService.refresh();
+      expect(breadcrumbService.getBreadcrumbs).toHaveBeenCalledTimes(callsBefore + 1);
+      let breadcrumbComponent = fixture.debugElement.query(By.directive(BreadcrumbComponent)).componentInstance;
+      spyOn(breadcrumbComponent, "refreshBreadcrumbRoutes");
+      breadcrumbService.refresh();
+      expect(breadcrumbComponent.refreshBreadcrumbRoutes).toHaveBeenCalledTimes(1);
+    }));
   });
 
   function buildBreadcrumbs(url: string, visible: boolean, params?): BreadcrumbRoute {

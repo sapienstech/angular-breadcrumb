@@ -3,7 +3,6 @@ import {of as observableOf, Observable} from 'rxjs';
 import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
 import {Component} from "@angular/core";
 import {By} from "@angular/platform-browser";
-import "rxjs/add/observable/of"
 import {CommonModule} from "@angular/common";
 import {SearchBoxComponent} from "./searchbox.component";
 

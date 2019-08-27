@@ -55,7 +55,16 @@ const community_routes: Routes = [
             {label: "productF", url: "products/product6", icon:"fa fa-globe"},
             {label: "productG", url: "products/product6", icon:"fa fa-globe"}
           ]
-        }
+        },
+        children: [
+          {
+            breadcrumb: {
+              label: "extra",
+              icon: "fa fa-globe",
+            },
+            url: "/users/details/2",
+          }
+        ],
       }
     },
     children: [
