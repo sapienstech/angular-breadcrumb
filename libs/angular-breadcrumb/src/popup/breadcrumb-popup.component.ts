@@ -37,7 +37,8 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
 
               <a *ngIf="!nextLink.disabled" 
-                 [routerLink]="[nextLink.url, nextLink.params?nextLink.params:{}]" 
+                 [routerLink]="[nextLink.url]"
+                 [queryParams]="nextLink.params"
                  (mouseenter)="selectedItemIndex=inx"
                  (click)="hidePopup()"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}" >
