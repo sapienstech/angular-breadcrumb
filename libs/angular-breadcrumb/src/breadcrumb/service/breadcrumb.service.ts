@@ -77,7 +77,7 @@ export class BreadcrumbService {
     //add breadcrumbDropDown
     const breadcrumb: BreadcrumbRoute = {
       breadcrumb: child.snapshot.data[BREADCRUMB_DATA_KEY],
-      params: child.snapshot.params,
+      params: child.snapshot.queryParams,
       url: url
     };
     breadcrumbs.push(breadcrumb);
