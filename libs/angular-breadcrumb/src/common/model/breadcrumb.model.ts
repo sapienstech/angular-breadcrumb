@@ -1,7 +1,7 @@
 import {Observable} from "rxjs";
 import {BreadcrumbDropDown} from "./dropdown.model";
-import {BreadcrumbDropDownItem} from "./dropdown-item.model";
 import {BreadcrumbRoute} from "./route.model";
+import {Params} from "@angular/router";
 
 
 export interface Breadcrumb {
@@ -11,4 +11,5 @@ export interface Breadcrumb {
   hideChildren?: boolean;
   dropDown?: BreadcrumbDropDown;
   children?: BreadcrumbRoute[];// extra urls after current
+  queryParams?: Params
 }

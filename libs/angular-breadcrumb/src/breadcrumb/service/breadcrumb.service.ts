@@ -75,9 +75,10 @@ export class BreadcrumbService {
     url += `/${routeURL}`;
 
     //add breadcrumbDropDown
+    let userBreadcrumb = child.snapshot.data[BREADCRUMB_DATA_KEY] as Breadcrumb;
     const breadcrumb: BreadcrumbRoute = {
       breadcrumb: child.snapshot.data[BREADCRUMB_DATA_KEY],
-      params: child.snapshot.queryParams,
+      params: userBreadcrumb.queryParams,
       url: url
     };
     breadcrumbs.push(breadcrumb);
