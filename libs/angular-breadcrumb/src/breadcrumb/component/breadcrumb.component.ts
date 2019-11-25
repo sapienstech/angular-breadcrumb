@@ -19,8 +19,8 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
         <i *ngIf="route.breadcrumb.icon && inx==0" class="{{route.breadcrumb.icon}} home-icon"></i>
         <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
         <span *ngIf="!isString(route.breadcrumb.label)">{{route.breadcrumb.label |async}}</span>
-          <div class="breadcrumb-tooltip">{{route.breadcrumb.label}}
-              <span *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-tooltip-text">{{route.breadcrumb.label}}</span>
+          <div *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-tooltip breadcrumb-tooltip-ellipsis">{{route.breadcrumb.label}}
+              <span class="breadcrumb-tooltip-text">{{route.breadcrumb.label}}</span>
           </div>
       </a>
       <dcn-breadcrumb-popup [isLast]="isLast" [breadcrumbDropDown]="route.breadcrumb.dropDown"></dcn-breadcrumb-popup>

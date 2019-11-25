@@ -62,19 +62,21 @@
   align-items: center;
   .link-icon {
     padding-right: 6px;
-    &:hover + .breadcrumb-tooltip {
+    &:hover + .breadcrumb-tooltip-text {
       text-decoration: underline;
     }
   }
   .breadcrumb-tooltip {
     max-width: 200px;
     display: inline-block;
-    overflow: hidden;
-    text-overflow: ellipsis;
     height: 18px;
     &:hover {
       text-decoration: underline;
     }
+  }
+  .breadcrumb-tooltip-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .breadcrumb-tooltip .breadcrumb-tooltip-text {
     visibility: hidden;
