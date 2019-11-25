@@ -33,7 +33,7 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
                  (mouseenter)="selectedItemIndex=inx"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}" >
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
-              <span class="breadcrumb-popup-link-text" >{{nextLink.label}}</span></a>
+              <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
 
 
               <a *ngIf="!nextLink.disabled" 
@@ -43,7 +43,7 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
                  (click)="hidePopup()"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}" >
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
-              <span class="breadcrumb-popup-link-text" >{{nextLink.label}}</span></a>
+              <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
           </div>
       </div>
   </div>
