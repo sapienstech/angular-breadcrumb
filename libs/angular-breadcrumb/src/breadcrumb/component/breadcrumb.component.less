@@ -30,6 +30,7 @@
   &__tooltip {
     max-width: @tooltip-max-width;
     display: inline-block;
+    white-space: nowrap;
     height: @tooltip-height;
     &:hover {
       text-decoration: underline;
@@ -46,6 +47,7 @@
       color: white;
       position: absolute;
       word-break: break-word;
+      white-space: normal;
       top: @tooltip-top;
       left: @tooltip-left;
       z-index: 99999;
