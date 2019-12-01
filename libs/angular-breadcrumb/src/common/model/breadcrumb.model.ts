@@ -12,5 +12,4 @@ export interface Breadcrumb {
   dropDown?: BreadcrumbDropDown;
   children?: BreadcrumbRoute[];// extra urls after current
   queryParams?: Params;
-  theme?: string;
 }
