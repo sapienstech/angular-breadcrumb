@@ -17,11 +17,12 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
     <div *ngIf="!route.breadcrumb.hide" class="breadcrumb-holder">
       <a [routerLink]="[route.url]" [queryParams]="route.params" class="breadcrumb-link">
         <i *ngIf="route.breadcrumb.icon && inx==0" class="{{route.breadcrumb.icon}} home-icon"></i>
-        <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
         <span *ngIf="!isString(route.breadcrumb.label)">{{route.breadcrumb.label |async}}</span>
-          <div *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-holder__tooltip ellipsis">{{route.breadcrumb.label}}
-              <span class="breadcrumb-holder__tooltip--text">{{route.breadcrumb.label}}</span>
-          </div>
+        <div *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-holder__tooltip ellipsis">
+            <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
+            <span class="breadcrumb-holder__tooltip--label ellipsis">{{route.breadcrumb.label}}</span>
+            <span class="breadcrumb-holder__tooltip--text">{{route.breadcrumb.label}}</span>
+        </div>
       </a>
       <dcn-breadcrumb-popup [isLast]="isLast" [breadcrumbDropDown]="route.breadcrumb.dropDown"></dcn-breadcrumb-popup>
     </div>

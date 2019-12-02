@@ -6,7 +6,7 @@
 @tooltip-font-size: 12px;
 @tooltip-border-radius: 3px;
 @tooltip-max-width: 200px;
-@tooltip-height: 18px;
+@tooltip-min-width: 52px;
 @tooltip-text-bottom: 100%;
 @tooltip-top: 45px;
 @tooltip-left: 26px;
@@ -28,18 +28,20 @@
     font-size: 1.5em;
   }
   &__tooltip {
-    max-width: @tooltip-max-width;
-    display: inline-block;
     white-space: nowrap;
-    height: @tooltip-height;
+    display: flex;
+    min-width: @tooltip-min-width;
     &:hover {
-      text-decoration: underline;
       .breadcrumb-holder__tooltip--text {
         visibility: visible;
       }
     }
+    &--label:hover {
+      text-decoration: underline;
+    }
     &--text {
       visibility: hidden;
+      min-width: fit-content;
       padding: @tooltip-text-padding;
       background-color: @tooltip-background;
       border-radius: @tooltip-border-radius;
@@ -70,8 +72,6 @@
   font-size: 18px;
   padding: 0;
   align-items: center;
-  width: 20px;
-  height: 30px;
   margin: 0 5px;
   outline: none;
   border: none;
@@ -102,8 +102,7 @@
 .breadcrumb-link {
   text-decoration: none;
   outline: none;
-  display: flex;
-  align-items: center;
+  display: grid;
   .link-icon {
     padding-right: 6px;
     &:hover + .breadcrumb-holder__tooltip--text {
