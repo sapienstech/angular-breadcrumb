@@ -18,7 +18,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
       <a [routerLink]="[route.url]" [queryParams]="route.params" class="breadcrumb-link">
         <i *ngIf="route.breadcrumb.icon && inx==0" class="{{route.breadcrumb.icon}} home-icon"></i>
         <span *ngIf="!isString(route.breadcrumb.label)">{{route.breadcrumb.label |async}}</span>
-        <div *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-holder__tooltip ellipsis">
+        <div *ngIf="isString(route.breadcrumb.label)" class="breadcrumb-holder__tooltip ellipsis"  [ngStyle]="route.breadcrumb.label === '...' && {'min-width': '0'}">
             <i *ngIf="route.breadcrumb.icon && inx!=0" class="{{route.breadcrumb.icon}} icon link-icon" ></i>
             <span class="breadcrumb-holder__tooltip--label ellipsis">{{route.breadcrumb.label}}</span>
             <span class="breadcrumb-holder__tooltip--text">{{route.breadcrumb.label}}</span>
