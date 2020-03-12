@@ -10,6 +10,9 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
   styleUrls: ["../breadcrumb/component/breadcrumb.component.less"],
   template: `
 <div class="popover" [ngClass]="{'align-popover-to-left': alignLeft}">
+  <button *ngIf="isShowNextArrow"  #btn3 [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
+    <i class="fa fa-angle-right menu-button-icon"></i>
+  </button>
   <div *ngIf="showPopup" class="breadcrumbPopup">
   <div class="arrowUp"></div>
       <h4 *ngIf="breadcrumbDropDown.popupTitle">{{breadcrumbDropDown.popupTitle}}</h4>
@@ -44,11 +47,6 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
           </div>
       </div>
   </div>
-
-    <button *ngIf="isShowNextArrow"  #btn3 
-            [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
-       <i></i>
-    </button>
 </div>
 
 `
