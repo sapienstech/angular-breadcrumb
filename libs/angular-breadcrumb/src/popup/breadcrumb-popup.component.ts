@@ -60,7 +60,7 @@ export class BreadcrumbPopupComponent {
   selectedItemIndex: number;
   private itemSelectedByKeyboard: boolean = false;
   alignLeft: boolean = false;
-  widthOfPopOver = 350;
+  popoverMaxWidth: 350;
 
   @Input()
   isLast: boolean;
@@ -103,8 +103,8 @@ export class BreadcrumbPopupComponent {
   }
 
   alignPopover(event: MouseEvent) {
-    const spaceForPopover = window.innerWidth - event.clientX;
-    this.alignLeft = spaceForPopover < this.widthOfPopOver;
+    const availableWidthForPopover = window.innerWidth - event.clientX;
+    this.alignLeft = availableWidthForPopover < this.popoverMaxWidth;
   }
 
   hidePopup() {
