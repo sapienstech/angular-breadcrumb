@@ -60,7 +60,7 @@ export class BreadcrumbPopupComponent {
   selectedItemIndex: number;
   private itemSelectedByKeyboard: boolean = false;
   alignLeft: boolean = false;
-  popoverMaxWidth: 350;
+  popoverMaxWidth: number  = 350;
 
   @Input()
   isLast: boolean;
