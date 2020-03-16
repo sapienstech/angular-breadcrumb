@@ -183,16 +183,18 @@ describe("Breadcrumb Popup Component", () => {
         it('should set the alignLeft to true', async(() => {
           obj = {clientX:700, clientY: 400};
           triggerClick(obj);
-          detectChanges(fixture);
-          expect(page.breadcrumbPopupComponent.alignLeft).toBeTruthy();
-          expect(page.popOver.classList).toContain(alignPopOverToLeft);
+          detectChanges(fixture).then(() => {
+            expect(page.breadcrumbPopupComponent.alignLeft).toBeTruthy();
+            expect(page.popOver.classList).toContain(alignPopOverToLeft);
+          });
         }));
         it('should set the alignLeft to false', async(() => {
           obj = {clientX:50, clientY: 40};
           triggerClick(obj);
-          detectChanges(fixture);
-          expect(page.breadcrumbPopupComponent.alignLeft).toBeFalsy();
-          expect(page.popOver.classes).not.toContain(alignPopOverToLeft);
+          detectChanges(fixture).then(() => {
+            expect(page.breadcrumbPopupComponent.alignLeft).toBeFalsy();
+            expect(page.popOver.classes).not.toContain(alignPopOverToLeft);
+          });
         }));
 
         function triggerClick(offsetObj) {
