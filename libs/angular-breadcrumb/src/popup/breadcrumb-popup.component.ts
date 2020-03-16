@@ -4,12 +4,13 @@ import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/co
 import {Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
+import {WindowRef} from '../../../../apps/demo/src/app/windowRef';
 
 @Component({
   selector: 'dcn-breadcrumb-popup',
   styleUrls: ["../breadcrumb/component/breadcrumb.component.less"],
   template: `
-<div class="popover" >
+<div class="popover" [ngClass]="{'align-popover-to-left': alignLeft}">
   <button *ngIf="isShowNextArrow"  #btn3 [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
     <i class="fa fa-angle-right menu-button-icon"></i>
   </button>
@@ -59,6 +60,8 @@ export class BreadcrumbPopupComponent {
   filteredItems: BreadcrumbDropDownItem[];
   selectedItemIndex: number;
   private itemSelectedByKeyboard: boolean = false;
+  alignLeft: boolean = false;
+  popoverMaxWidth: number  = 350;
 
   @Input()
   isLast: boolean;
@@ -73,7 +76,7 @@ export class BreadcrumbPopupComponent {
     this._showPopup = isShow;
   }
 
-  constructor(private elementRef: ElementRef, private router: Router) {
+  constructor(private elementRef: ElementRef, private router: Router, private windowRef: WindowRef) {
     this.search = this.search.bind(this);
   }
 
@@ -100,6 +103,11 @@ export class BreadcrumbPopupComponent {
     }
   }
 
+  alignPopover(event: MouseEvent) {
+    const availableWidthForPopover = this.windowRef.nativeWindow.innerWidth - event.clientX;
+    this.alignLeft = availableWidthForPopover < this.popoverMaxWidth;
+  }
+
   hidePopup() {
     this.showPopup = false;
   }
@@ -112,6 +120,7 @@ export class BreadcrumbPopupComponent {
 
   setInitialFilter(event: MouseEvent) {
     this.resetSelection();
+    this.alignPopover(event);
     const items = this.items;
     if (items instanceof Observable) {
       let subscription = items.subscribe(vals => {

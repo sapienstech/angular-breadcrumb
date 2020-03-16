@@ -115,6 +115,15 @@
 
 .popover {
   position: relative;
+  &.align-popover-to-left {
+    .breadcrumbPopup {
+      left: initial;
+      right: 0;
+      .arrowUp {
+        right: 0;
+      }
+    }
+  }
 }
 
 .popover .breadcrumbPopup {

@@ -176,6 +176,31 @@ describe("Breadcrumb Popup Component", () => {
 
         })
       });
+
+      describe('align popover', () => {
+        let obj;
+        const alignPopOverToLeft = 'align-popover-to-left';
+        it('should set the alignLeft to true', async(() => {
+          obj = {clientX:700, clientY: 400};
+          triggerClick(obj);
+          detectChanges(fixture).then(() => {
+            expect(page.breadcrumbPopupComponent.alignLeft).toBeTruthy();
+            expect(page.popOver.classList).toContain(alignPopOverToLeft);
+          });
+        }));
+        it('should set the alignLeft to false', async(() => {
+          obj = {clientX:50, clientY: 40};
+          triggerClick(obj);
+          detectChanges(fixture).then(() => {
+            expect(page.breadcrumbPopupComponent.alignLeft).toBeFalsy();
+            expect(page.popOver.classes).not.toContain(alignPopOverToLeft);
+          });
+        }));
+
+        function triggerClick(offsetObj) {
+          page.dropDownButton.triggerEventHandler('click', offsetObj);
+        }
+      });
     });
 
     describe('when there is a valid breadcrumbDropDown data as observable', () => {
@@ -279,7 +304,7 @@ describe("Breadcrumb Popup Component", () => {
           params: [{id: 2}]
         }
       ];
-      let breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null);
+      let breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null, null);
       breadcrumbPopupComponent.breadcrumbDropDown = inputBreadcrumb;
       breadcrumbDropDownData = breadcrumbPopupComponent.items as BreadcrumbDropDownItem[];
     });
@@ -292,7 +317,7 @@ describe("Breadcrumb Popup Component", () => {
   describe('class indicators', () => {
     let breadcrumbPopupComponent: BreadcrumbPopupComponent;
     beforeEach(() => {
-      breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null);
+      breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null, null);
     });
     it('should have next arrow in case there is a dropdown', () => {
       let breadcrumbDropDown = {items: []} as  BreadcrumbDropDown;
@@ -372,6 +397,10 @@ class Page {
 
   get searchBoxInput(): HTMLInputElement {
     return this.searchBox.query(By.css("input")).nativeElement;
+  }
+
+  get popOver() {
+    return this.fixture.debugElement.query((By.css('.popover'))).nativeElement;
   }
 }
 

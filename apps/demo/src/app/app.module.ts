@@ -10,6 +10,7 @@ import {UserDetailComponent} from "./demo/user-detail.component";
 import {BreadcrumbModule} from "../../../../libs/angular-breadcrumb/src/breadcrumb/breadcrumb.module";
 import {BreadcrumbResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb.resolver";
 import {BreadcrumbDynamicResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb-dynamic.resolver";
+import { WindowRef } from './windowRef';
 
 
 const community_routes: Routes = [
@@ -98,7 +99,7 @@ const community_routes: Routes = [
     HttpModule,
     RouterModule.forRoot(community_routes),
   ],
-  providers: [],
+  providers: [WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule {
