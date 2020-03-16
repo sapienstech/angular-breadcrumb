@@ -9,9 +9,6 @@ import {WindowRef} from '../../../../apps/demo/src/app/windowRef';
 @Component({
   selector: 'dcn-breadcrumb-popup',
   styleUrls: ["../breadcrumb/component/breadcrumb.component.less"],
-  providers: [
-    { provide: "windowObject", useValue: window}
-  ],
   template: `
 <div class="popover" [ngClass]="{'align-popover-to-left': alignLeft}">
   <button *ngIf="isShowNextArrow"  #btn3 [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
