@@ -304,7 +304,7 @@ describe("Breadcrumb Popup Component", () => {
           params: [{id: 2}]
         }
       ];
-      let breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null, null);
+      let breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null);
       breadcrumbPopupComponent.breadcrumbDropDown = inputBreadcrumb;
       breadcrumbDropDownData = breadcrumbPopupComponent.items as BreadcrumbDropDownItem[];
     });
@@ -317,7 +317,7 @@ describe("Breadcrumb Popup Component", () => {
   describe('class indicators', () => {
     let breadcrumbPopupComponent: BreadcrumbPopupComponent;
     beforeEach(() => {
-      breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null, null);
+      breadcrumbPopupComponent = new BreadcrumbPopupComponent(null, null);
     });
     it('should have next arrow in case there is a dropdown', () => {
       let breadcrumbDropDown = {items: []} as  BreadcrumbDropDown;
