@@ -4,7 +4,6 @@ import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/co
 import {Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
-import {WindowRef} from '../../../../apps/demo/src/app/windowRef';
 
 @Component({
   selector: 'dcn-breadcrumb-popup',
@@ -76,7 +75,7 @@ export class BreadcrumbPopupComponent {
     this._showPopup = isShow;
   }
 
-  constructor(private elementRef: ElementRef, private router: Router, private windowRef: WindowRef) {
+  constructor(private elementRef: ElementRef, private router: Router) {
     this.search = this.search.bind(this);
   }
 
@@ -104,7 +103,7 @@ export class BreadcrumbPopupComponent {
   }
 
   alignPopover(event: MouseEvent) {
-    const availableWidthForPopover = this.windowRef.nativeWindow.innerWidth - event.clientX;
+    const availableWidthForPopover = window.innerWidth - event.clientX;
     this.alignLeft = availableWidthForPopover < this.popoverMaxWidth;
   }
 
