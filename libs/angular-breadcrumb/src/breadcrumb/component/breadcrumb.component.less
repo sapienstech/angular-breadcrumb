@@ -10,6 +10,10 @@
 @tooltip-text-bottom: 100%;
 @tooltip-top: 45px;
 @tooltip-left: 26px;
+@maxWidthOfBreadcrumbPopupMenu: 334px;
+@breadcrumbIconSize: 18px;
+@breadcrumbTextSize: 14px;
+
 .breadcrumb {
   display: flex;
   height: 50px;
@@ -160,21 +164,22 @@
     padding: 0 12px;
     align-items: center;
     font-size: 12px;
-    //color: #3e4959;
     text-decoration: none;
     outline: none;
     cursor: pointer;
+    max-width: @maxWidthOfBreadcrumbPopupMenu;
     &.is-disabled{
       cursor: default;
     }
   }
   .breadcrumb-popup-link-icon {
-    font-size: 1.5em;
-    //color: #a0a0a0;
-    margin-right: 15px;
+    font-size: @breadcrumbIconSize;
+    margin-right: 10px;
   }
   .breadcrumb-popup-link-text {
     margin-top: 1px;
+    font-size: @breadcrumbTextSize;
+    word-break: break-word;
   }
   .breadcrumb-popup-search {
     padding: 12px;
