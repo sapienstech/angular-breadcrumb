@@ -53,7 +53,7 @@ export class BreadcrumbService {
 
     //iterate over each children
     const child = children.find(c => c.outlet === PRIMARY_OUTLET);
-    let breadCrumbData: Breadcrumb = child && child.snapshot.data && child.snapshot.data[BREADCRUMB_DATA_KEY];
+    let breadCrumbData: Breadcrumb = child  && child.snapshot && child.snapshot.data && child.snapshot.data[BREADCRUMB_DATA_KEY];
 
     if (breadCrumbData && breadCrumbData.hideChildren) {
       return;
