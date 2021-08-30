@@ -5,5 +5,12 @@ export interface BreadcrumbDropDownItem {
     url: string;
     icon?: string;
     params?: Params;
-    disabled?: boolean
+    disabled?: boolean;
+    selectedItemIndicator?:BreadcrumbDropDownSelectedItem;
+
+}
+
+export class BreadcrumbDropDownSelectedItem{
+  isSelected:boolean;
+  defaultSelectedItemStyle?:Object = {'background-color':'#eee'};
 }

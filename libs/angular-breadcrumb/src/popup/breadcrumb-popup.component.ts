@@ -25,18 +25,19 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
                       [minLength]="0"
                       (results)="onFiltered($event)">
       </dcn-search-box>
-      
+
       <div class="breadcrumb-popup-menu" #scrollMe >
           <div *ngFor="let nextLink of filteredItems; let inx=index;"  class="breadcrumb-popup-menu-item">
 
-              <a *ngIf="nextLink.disabled"
+              <a *ngIf="nextLink.disabled || nextLink.selectedItemIndicator?.isSelected"
                  (mouseenter)="selectedItemIndex=inx"
+                 [ngStyle]="nextLink.selectedItemIndicator?.defaultSelectedItemStyle"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}" >
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
 
 
-              <a *ngIf="!nextLink.disabled" 
+              <a *ngIf="!nextLink.disabled && !nextLink.selectedItemIndicator?.isSelected"
                  [routerLink]="[nextLink.url]"
                  [queryParams]="nextLink.params"
                  (mouseenter)="selectedItemIndex=inx"
