@@ -102,7 +102,7 @@ describe("Breadcrumb Popup Component", () => {
           let data = inputBreadcrumb.items;
           page.links.map(link => {
             expect(link.linkParams[0]).toBe(data[pos].url, 'should bind to url');
-            expect(link.linkParams[1]).toBe(data[pos].params, 'should bind to link param');
+            expect(link.queryParams).toBe(data[pos].params, 'should bind to link param');
             pos++;
           });
         });
@@ -217,6 +217,16 @@ describe("Breadcrumb Popup Component", () => {
           url: "second url",
           icon: "second icon",
           params: [{id: 2}]
+        },
+        {
+          label: "third label",
+          url: "third url",
+          icon: "third icon",
+          params: [{id: 3}],
+          selectedItemIndicator:{
+            isSelected:true,
+            defaultSelectedItemStyle: {'background-color':'blue'}
+          }
         }
       ];
 
@@ -243,6 +253,9 @@ describe("Breadcrumb Popup Component", () => {
               page.anchorElements.map(anchor => {
                 expect(anchor.nativeElement.innerHTML.indexOf(data[pos].label)).toBeGreaterThan(-1);
                 expect(anchor.nativeElement.innerHTML.indexOf(data[pos].icon)).toBeGreaterThan(-1);
+                if(data[pos].selectedItemIndicator){
+                  expect(anchor.nativeElement.style.backgroundColor).toBe('blue');
+                }
                 pos++;
               });
             });
