@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
@@ -28,11 +28,10 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
       <div class="breadcrumb-popup-menu" #scrollMe >
           <div *ngFor="let nextLink of filteredItems; let inx=index;"  class="breadcrumb-popup-menu-item">
-
               <a *ngIf="nextLink.disabled || nextLink.selectedItemIndicator?.isSelected"
                  (mouseenter)="selectedItemIndex=inx"
-                 [ngStyle]="nextLink.selectedItemIndicator?.defaultSelectedItemStyle"
-                 [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}" >
+                 [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}"
+                 highlightCurrentOpenedItem pathParamMap="rootActivatedRoute.paramMap" dropDownItem="nextLink">
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
 
@@ -56,6 +55,8 @@ export class BreadcrumbPopupComponent {
 
   @Input()
   breadcrumbDropDown: BreadcrumbDropDown;
+  @Input()
+  rootActivatedRoute:ActivatedRoute;
   allItems: BreadcrumbDropDownItem[];
   filteredItems: BreadcrumbDropDownItem[];
   selectedItemIndex: number;
@@ -76,7 +77,7 @@ export class BreadcrumbPopupComponent {
     this._showPopup = isShow;
   }
 
-  constructor(private elementRef: ElementRef, private router: Router) {
+  constructor(private elementRef: ElementRef, private router: Router )  {
     this.search = this.search.bind(this);
   }
 
@@ -119,6 +120,7 @@ export class BreadcrumbPopupComponent {
   }
 
   setInitialFilter(event: MouseEvent) {
+    console.log(this.rootActivatedRoute );
     this.resetSelection();
     this.alignPopover(event);
     const items = this.items;

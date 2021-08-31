@@ -10,7 +10,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
   selector: "dcn-breadcrumb",
   styleUrls: ["breadcrumb.component.less"],
   template: `
- 
+
 <div *ngIf="!hideBreadcrumb" class="breadcrumb">
 
   <ng-container *ngFor="let route of breadcrumbRoutes; let inx = index; let isLast=last" >
@@ -24,7 +24,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
             <span class="breadcrumb-holder__tooltip--text">{{route.breadcrumb.label}}</span>
         </div>
       </a>
-      <dcn-breadcrumb-popup [isLast]="isLast" [breadcrumbDropDown]="route.breadcrumb.dropDown"></dcn-breadcrumb-popup>
+      <dcn-breadcrumb-popup [isLast]="isLast" [breadcrumbDropDown]="route.breadcrumb.dropDown" [rootActivatedRoute]="rootActivatedRoute" ></dcn-breadcrumb-popup>
     </div>
   </ng-container>
 </div>
@@ -34,6 +34,7 @@ import {Breadcrumb} from "../../common/model/breadcrumb.model";
 export class BreadcrumbComponent implements OnInit, OnDestroy {
   breadcrumbRoutes: BreadcrumbRoute[];
   homeBreadcrumbRoute: BreadcrumbRoute;
+  rootActivatedRoute:ActivatedRoute;
 
   @Input()
   hideWhenNothingToShow = false;
@@ -77,11 +78,13 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
       takeWhile(() => !this.destroyed),
       filter(event => event instanceof NavigationEnd)).subscribe(event => {
       this.refreshBreadcrumbRoutes();
+      this.rootActivatedRoute = this.breadcrumbService.activatedRoute;
     });
     this.breadcrumbService
       .refreshed$
       .pipe(takeWhile(() => !this.destroyed))
       .subscribe(() => this.refreshBreadcrumbRoutes());
+
   }
 
   private refreshBreadcrumbRoutes() {
