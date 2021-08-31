@@ -8,9 +8,11 @@ export interface BreadcrumbDropDownItem {
     disabled?: boolean;
     selectedItemIndicator?:BreadcrumbDropDownSelectedItem;
 
+
 }
 
 export class BreadcrumbDropDownSelectedItem{
+  private readonly defaultSelectedItemBackgroundColorCode = '#eee';
   isSelected:boolean;
-  defaultSelectedItemStyle?:Object = {'background-color':'#eee'};
+  defaultSelectedItemStyle?:Object = {'background-color':this.defaultSelectedItemBackgroundColorCode};
 }
