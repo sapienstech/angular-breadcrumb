@@ -10,7 +10,7 @@ import {UserDetailComponent} from "./demo/user-detail.component";
 import {BreadcrumbModule} from "../../../../libs/angular-breadcrumb/src/breadcrumb/breadcrumb.module";
 import {BreadcrumbResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb.resolver";
 import {BreadcrumbDynamicResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb-dynamic.resolver";
-import { HighlightCurrentOpenedItemDirective } from '../../../../libs/angular-breadcrumb/src/breadcrumb/directive/highlight-current-opened-item.directive';
+
 
 
 const community_routes: Routes = [
@@ -90,7 +90,7 @@ const community_routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent, UsersComponent, UserDetailComponent, HighlightCurrentOpenedItemDirective
+    DemoComponent, UsersComponent, UserDetailComponent
   ],
   imports: [
     BrowserModule,

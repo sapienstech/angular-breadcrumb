@@ -121,7 +121,6 @@ export class BreadcrumbPopupComponent {
   }
 
   setInitialFilter(event: MouseEvent) {
-    console.log(this.rootActivatedRoute );
     this.resetSelection();
     this.alignPopover(event);
     const items = this.items;
