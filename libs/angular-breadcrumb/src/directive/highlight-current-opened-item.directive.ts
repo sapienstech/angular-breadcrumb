@@ -10,9 +10,9 @@ export class HighlightCurrentOpenedItemDirective implements OnInit  {
   @Input()
   pathParamMap:ParamMap;
   @Input()
-  dropDownItem:BreadcrumbDropDownItem
-  @Input()
-  color:string = '#eee'
+  dropDownItem:BreadcrumbDropDownItem;
+
+  private readonly color:string = '#eeeeee';
 
   constructor(private elementRef:ElementRef) { }
 
