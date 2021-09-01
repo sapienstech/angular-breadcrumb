@@ -12,7 +12,6 @@ import {BreadcrumbResolver} from "../../../../libs/angular-breadcrumb/src/breadc
 import {BreadcrumbDynamicResolver} from "../../../../libs/angular-breadcrumb/src/breadcrumb/resolver/breadcrumb-dynamic.resolver";
 
 
-
 const community_routes: Routes = [
   {path: '', redirectTo: 'products', pathMatch: 'full'},
   {
