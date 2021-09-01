@@ -28,20 +28,21 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
       <div class="breadcrumb-popup-menu" #scrollMe >
           <div *ngFor="let nextLink of filteredItems; let inx=index;"  class="breadcrumb-popup-menu-item">
-              <a *ngIf="nextLink.disabled || nextLink.selectedItemIndicator?.isSelected"
+              <a *ngIf="nextLink.disabled "
                  (mouseenter)="selectedItemIndex=inx"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}"
-                 highlightCurrentOpenedItem pathParamMap="rootActivatedRoute.paramMap" dropDownItem="nextLink">
+                 highlightCurrentOpenedItem [pathParamMap]=rootActivatedRoute.snapshot.paramMap [dropDownItem]="nextLink">
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
 
 
-              <a *ngIf="!nextLink.disabled && !nextLink.selectedItemIndicator?.isSelected"
+              <a *ngIf="!nextLink.disabled "
                  [routerLink]="[nextLink.url]"
                  [queryParams]="nextLink.params"
                  (mouseenter)="selectedItemIndex=inx"
                  (click)="hidePopup()"
-                 [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}" >
+                 [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}"
+                 highlightCurrentOpenedItem [pathParamMap]=rootActivatedRoute.snapshot.paramMap [dropDownItem]=nextLink>
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
           </div>

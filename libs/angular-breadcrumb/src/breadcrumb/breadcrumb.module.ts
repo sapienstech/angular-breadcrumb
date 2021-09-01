@@ -9,9 +9,10 @@ import {BreadcrumbDynamicResolver} from "./resolver/breadcrumb-dynamic.resolver"
 import {BreadcrumbPopupComponent} from "../popup/breadcrumb-popup.component";
 import {SearchBoxComponent} from "../searchbox/searchbox.component";
 import {BreadcrumbRouterService} from "./service/breadcrumb-router.service";
+import { HighlightCurrentOpenedItemDirective } from '../directive/highlight-current-opened-item.directive';
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [BreadcrumbComponent, BreadcrumbPopupComponent, SearchBoxComponent, RoutePlaceHolderComponent],
+  declarations: [BreadcrumbComponent, BreadcrumbPopupComponent, SearchBoxComponent, RoutePlaceHolderComponent ,HighlightCurrentOpenedItemDirective ],
   exports: [BreadcrumbComponent, RoutePlaceHolderComponent],
   providers: [BreadcrumbService, BreadcrumbRouterService, BreadcrumbResolver, BreadcrumbDynamicResolver]
 

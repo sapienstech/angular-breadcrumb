@@ -253,9 +253,6 @@ describe("Breadcrumb Popup Component", () => {
               page.anchorElements.map(anchor => {
                 expect(anchor.nativeElement.innerHTML.indexOf(data[pos].label)).toBeGreaterThan(-1);
                 expect(anchor.nativeElement.innerHTML.indexOf(data[pos].icon)).toBeGreaterThan(-1);
-                if(data[pos].selectedItemIndicator){
-                  expect(anchor.nativeElement.style.backgroundColor).toBe('blue');
-                }
                 pos++;
               });
             });
