@@ -17,7 +17,7 @@ export class HighlightCurrentOpenedItemDirective implements OnInit  {
   constructor(private elementRef:ElementRef) { }
 
   ngOnInit(): void {
-    if( this.dropDownItem.breadCrumbIdentifierAndIdPair && +(this.pathParamMap.get(this.dropDownItem.breadCrumbIdentifierAndIdPair.breadcrumbIdentifier)) === this.dropDownItem.breadCrumbIdentifierAndIdPair.itemId){
+    if( this.dropDownItem.breadCrumbIdentifierAndItemIdPair && +(this.pathParamMap.get(this.dropDownItem.breadCrumbIdentifierAndItemIdPair.breadcrumbIdentifier)) === this.dropDownItem.breadCrumbIdentifierAndItemIdPair.itemId){
       this.elementRef.nativeElement.style.backgroundColor = this.color;
     }
   }

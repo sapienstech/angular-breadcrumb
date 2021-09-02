@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
@@ -42,7 +42,7 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
                  (mouseenter)="selectedItemIndex=inx"
                  (click)="hidePopup()"
                  [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}"
-                 highlightCurrentOpenedItem [pathParamMap]=rootActivatedRoute.snapshot.paramMap [dropDownItem]=nextLink>
+                 highlightCurrentOpenedItem [pathParamMap]=routePathParams [dropDownItem]=nextLink>
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
           </div>
@@ -72,6 +72,10 @@ export class BreadcrumbPopupComponent {
 
   get showPopup() {
     return this._showPopup;
+  }
+
+  get routePathParams():ParamMap{
+    return this.rootActivatedRoute.snapshot.paramMap;
   }
 
   set showPopup(isShow: boolean) {

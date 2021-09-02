@@ -6,7 +6,7 @@ export interface BreadcrumbDropDownItem {
     icon?: string;
     params?: Params;
     disabled?: boolean;
-    breadCrumbIdentifierAndIdPair?:{itemId:number , breadcrumbIdentifier:string};
+    breadCrumbIdentifierAndItemIdPair?:{itemId:number , breadcrumbIdentifier:string};
 }
 
 
