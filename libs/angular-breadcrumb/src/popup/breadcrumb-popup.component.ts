@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/core";
-import {Router} from "@angular/router";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
@@ -28,21 +28,21 @@ import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 
       <div class="breadcrumb-popup-menu" #scrollMe >
           <div *ngFor="let nextLink of filteredItems; let inx=index;"  class="breadcrumb-popup-menu-item">
-
-              <a *ngIf="nextLink.disabled || nextLink.selectedItemIndicator?.isSelected"
+              <a *ngIf="nextLink.disabled "
                  (mouseenter)="selectedItemIndex=inx"
-                 [ngStyle]="nextLink.selectedItemIndicator?.defaultSelectedItemStyle"
-                 [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}" >
+                 [ngClass]="{'breadcrumb-popup-link':true, 'is-disabled':nextLink.disabled, 'is-selected':inx==selectedItemIndex}"
+                 highlightCurrentOpenedItem [pathParamMap]=rootActivatedRoute.snapshot.paramMap [dropDownItem]="nextLink">
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
 
 
-              <a *ngIf="!nextLink.disabled && !nextLink.selectedItemIndicator?.isSelected"
+              <a *ngIf="!nextLink.disabled "
                  [routerLink]="[nextLink.url]"
                  [queryParams]="nextLink.params"
                  (mouseenter)="selectedItemIndex=inx"
                  (click)="hidePopup()"
-                 [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}" >
+                 [ngClass]="{'breadcrumb-popup-link':true, 'is-selected':inx==selectedItemIndex}"
+                 highlightCurrentOpenedItem [pathParamMap]=routePathParams [dropDownItem]=nextLink>
               <i class="{{nextLink.icon}} icon breadcrumb-popup-link-icon" ></i>
               <span class="breadcrumb-popup-link-text" [innerHTML]="nextLink.label"></span></a>
           </div>
@@ -56,6 +56,8 @@ export class BreadcrumbPopupComponent {
 
   @Input()
   breadcrumbDropDown: BreadcrumbDropDown;
+  @Input()
+  rootActivatedRoute:ActivatedRoute;
   allItems: BreadcrumbDropDownItem[];
   filteredItems: BreadcrumbDropDownItem[];
   selectedItemIndex: number;
@@ -72,11 +74,15 @@ export class BreadcrumbPopupComponent {
     return this._showPopup;
   }
 
+  get routePathParams():ParamMap{
+    return this.rootActivatedRoute.snapshot.paramMap;
+  }
+
   set showPopup(isShow: boolean) {
     this._showPopup = isShow;
   }
 
-  constructor(private elementRef: ElementRef, private router: Router) {
+  constructor(private elementRef: ElementRef, private router: Router )  {
     this.search = this.search.bind(this);
   }
 

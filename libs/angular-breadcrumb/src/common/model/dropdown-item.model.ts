@@ -6,13 +6,7 @@ export interface BreadcrumbDropDownItem {
     icon?: string;
     params?: Params;
     disabled?: boolean;
-    selectedItemIndicator?:BreadcrumbDropDownSelectedItem;
-
-
+    breadCrumbIdentifierAndItemIdPair?:{itemId:number , breadcrumbIdentifier:string};
 }
 
-export class BreadcrumbDropDownSelectedItem{
-  private readonly defaultSelectedItemBackgroundColorCode = '#eee';
-  isSelected:boolean;
-  defaultSelectedItemStyle?:Object = {'background-color':this.defaultSelectedItemBackgroundColorCode};
-}
+

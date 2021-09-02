@@ -9,6 +9,10 @@ export const BREADCRUMB_DATA_KEY = "breadcrumb";
 
 @Injectable()
 export class BreadcrumbService {
+  private _activatedRoute:ActivatedRoute;
+  get activatedRoute():ActivatedRoute{
+    return this._activatedRoute;
+  }
   private refreshed = new Subject();
 
   get refreshed$() {
@@ -44,6 +48,7 @@ export class BreadcrumbService {
   private getBreadcrumbsRecursive(route: ActivatedRoute, url: string, breadcrumbs: BreadcrumbRoute[]): void {
 
     //get the child routes
+    this._activatedRoute =  route;
     const children: ActivatedRoute[] = route.children;
 
     //return if there are no more children
