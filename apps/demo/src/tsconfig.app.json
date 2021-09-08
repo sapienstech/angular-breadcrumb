@@ -1,14 +1,14 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc/apps/demo",
-    "module": "es2015"
-  },
-  "include": [
-    "**/*.ts"
-    /* add all lazy-loaded libraries here: "../../../libs/my-lib/index.ts" */
+    "outDir": "../../../dist/out-tsc/apps/demo"
+},
+  "files": [
+    "main.ts",
+    "polyfills.ts"
   ],
-  "exclude": [
-    "**/*.spec.ts"
+  "include": [
+    "**/*.d.ts"
+    /* add all lazy-loaded libraries here: "../../../libs/my-lib/index.ts" */
   ]
 }

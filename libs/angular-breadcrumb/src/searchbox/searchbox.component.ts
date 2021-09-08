@@ -36,7 +36,7 @@ export class SearchBoxComponent implements OnInit {
   filterText: string = "";
 
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('input', { static: true }) input: ElementRef;
 
   constructor(private el: ElementRef) {
     this.minLength = 1;

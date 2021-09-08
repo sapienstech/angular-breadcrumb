@@ -1,7 +1,7 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from "./app.component";
 import {RouterModule, Routes} from "@angular/router";
 import {DemoComponent} from "./demo/demo.component";
@@ -95,7 +95,7 @@ const community_routes: Routes = [
     BrowserModule,
     BreadcrumbModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(community_routes),
   ],
   providers: [],
