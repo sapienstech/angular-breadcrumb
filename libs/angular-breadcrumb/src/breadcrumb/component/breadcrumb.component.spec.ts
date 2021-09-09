@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {async, TestBed} from "@angular/core/testing";
+import { TestBed, waitForAsync } from "@angular/core/testing";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {BreadcrumbComponent} from "./breadcrumb.component";
 import {
@@ -17,7 +17,7 @@ import Spy = jasmine.Spy;
 
 describe("breadcrumbComponent", () => {
   let router;
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         BreadcrumbService,
@@ -91,7 +91,7 @@ describe("breadcrumbComponent", () => {
       visibleBreadcrumbs: BreadcrumbRoute[],
       breadcrumbService;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.compileComponents().then(() => {
         fixture = TestBed.createComponent(RoutingComponent);
         router = TestBed.get(Router);
@@ -118,7 +118,7 @@ describe("breadcrumbComponent", () => {
     describe(`when rendering Breadcrumb panel`, () => {
       let breadcrumbComponent;
 
-      beforeEach(async(() => {
+      beforeEach(waitForAsync(() => {
         fixture.autoDetectChanges();
         fixture.whenStable().then(() => {
           breadcrumbComponent = fixture.debugElement.query(By.directive(BreadcrumbComponent)).componentInstance;
@@ -127,43 +127,43 @@ describe("breadcrumbComponent", () => {
 
       describe(`when should always be shown (default behaviour)`, () => {
         describe(`when having routes`, () => {
-          beforeEach(async(() => {
+          beforeEach(waitForAsync(() => {
             breadcrumbComponent.breadcrumbRoutes = [{breadcrumb: {hide: false}}];
             fixture.autoDetectChanges();
           }));
-          it(`should show breadcrumb`, async(() => {
+          it(`should show breadcrumb`, waitForAsync(() => {
             expect(fixture.debugElement.query(By.css('.breadcrumb'))).toBeTruthy();
           }));
         });
         describe(`when having NO routes`, () => {
-          beforeEach(async(() => {
+          beforeEach(waitForAsync(() => {
             breadcrumbComponent.breadcrumbRoutes = [];
             fixture.autoDetectChanges();
           }));
-          it(`should show breadcrumb`, async(() => {
+          it(`should show breadcrumb`, waitForAsync(() => {
             expect(fixture.debugElement.query(By.css('.breadcrumb'))).toBeTruthy();
           }));
         });
       });
       describe(`when should shown if NOT empty`, () => {
-        beforeEach(async(() => {
+        beforeEach(waitForAsync(() => {
           breadcrumbComponent.hideWhenNothingToShow = true;
         }));
         describe(`when having routes`, () => {
-          beforeEach(async(() => {
+          beforeEach(waitForAsync(() => {
             breadcrumbComponent.breadcrumbRoutes = [{breadcrumb: {hide: false}}];
             fixture.autoDetectChanges();
           }));
-          it(`should show breadcrumb`, async(() => {
+          it(`should show breadcrumb`, waitForAsync(() => {
             expect(fixture.debugElement.query(By.css('.breadcrumb'))).toBeTruthy();
           }));
         });
         describe(`when having NO routes`, () => {
-          beforeEach(async(() => {
+          beforeEach(waitForAsync(() => {
             breadcrumbComponent.breadcrumbRoutes = [];
             fixture.autoDetectChanges();
           }));
-          it(`should NOT show breadcrumb`, async(() => {
+          it(`should NOT show breadcrumb`, waitForAsync(() => {
             expect(fixture.debugElement.query(By.css('.breadcrumb'))).toBeFalsy();
           }));
         });
@@ -173,7 +173,7 @@ describe("breadcrumbComponent", () => {
     it('should have 4 links', () => {
       expect(links.length).toBe(4, 'should have 4 links');
     });
-    it('should have home as the first link', async(() => {
+    it('should have home as the first link', waitForAsync(() => {
       expect(links[0].linkParams[0]).toBe('', 'should link to Home');
     }));
     it('should bind to routerLink', () => {
@@ -220,7 +220,7 @@ describe("breadcrumbComponent", () => {
         });
     });
 
-    it('should listen to refresh event', async(() => {
+    it('should listen to refresh event', waitForAsync(() => {
       let callsBefore = (breadcrumbService.getBreadcrumbs as Spy).calls.count();
       breadcrumbService.refresh();
       expect(breadcrumbService.getBreadcrumbs).toHaveBeenCalledTimes(callsBefore + 1);

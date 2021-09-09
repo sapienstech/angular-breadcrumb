@@ -96,7 +96,7 @@ const community_routes: Routes = [
     BreadcrumbModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(community_routes),
+    RouterModule.forRoot(community_routes, { relativeLinkResolution: 'legacy' }),
   ],
   providers: [],
   bootstrap: [AppComponent]

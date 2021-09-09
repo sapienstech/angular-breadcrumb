@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, DebugElement, Input} from "@angular/core";
-import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
+import { TestBed, ComponentFixture, fakeAsync, tick, waitForAsync } from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {BreadcrumbPopupComponent} from "./breadcrumb-popup.component";
 import {SearchBoxComponent} from "../searchbox/searchbox.component";
@@ -19,7 +19,7 @@ describe("Breadcrumb Popup Component", () => {
     let page: Page;
     let router: Router;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [],
         providers: [
@@ -34,7 +34,7 @@ describe("Breadcrumb Popup Component", () => {
       });
     }));
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       TestBed.compileComponents().then(() => {
         createComponent();
         linkParam = {id: 8};
@@ -61,7 +61,7 @@ describe("Breadcrumb Popup Component", () => {
       });
     });
     describe('when there is a valid breadcrumbDropDown data as array', () => {
-      beforeEach(async(() => {
+      beforeEach(waitForAsync(() => {
         inputBreadcrumb.items = [
           {
             label: "first label",
@@ -85,7 +85,7 @@ describe("Breadcrumb Popup Component", () => {
       });
 
       describe('when the user click on the button', () => {
-        beforeEach(async(() => {
+        beforeEach(waitForAsync(() => {
 
           click(page.dropDownButton);
           detectChanges(fixture).then(() => {
@@ -94,7 +94,7 @@ describe("Breadcrumb Popup Component", () => {
         it('should have a title', () => {
           expect(page.title.indexOf(inputBreadcrumb.popupTitle)).toBeGreaterThan(-1);
         });
-        it('should show the dropdown items with link items', async(() => {
+        it('should show the dropdown items with link items', waitForAsync(() => {
           expect(page.links.length).toBe((inputBreadcrumb.items as BreadcrumbDropDownItem[]).length);
         }));
         it('should bind to routerLink', () => {
@@ -150,14 +150,14 @@ describe("Breadcrumb Popup Component", () => {
               expect(onFilterSpy).toHaveBeenCalledWith([inputBreadcrumb.items [1]]);
             });
           }));
-          it('should change the component selection on key down', async(() => {
+          it('should change the component selection on key down', waitForAsync(() => {
             page.breadcrumbPopupComponent.selectedItemIndex = 0;
             page.searchBox.triggerEventHandler("keydown.arrowDown", {preventDefault:()=>{}});
             detectChanges(fixture).then(f => {
               expect(page.breadcrumbPopupComponent.selectedItemIndex).toBe(1);
             });
           }));
-          it('should change the component selection on key up', async(() => {
+          it('should change the component selection on key up', waitForAsync(() => {
             page.breadcrumbPopupComponent.selectedItemIndex = 3;
             page.searchBox.triggerEventHandler("keydown.arrowUp", {preventDefault:()=>{}});
             detectChanges(fixture).then(f => {
@@ -165,7 +165,7 @@ describe("Breadcrumb Popup Component", () => {
             });
           }));
 
-          it('should route to the link when clicking enter', async(() => {
+          it('should route to the link when clicking enter', waitForAsync(() => {
             page.breadcrumbPopupComponent.selectedItemIndex = 1;
             router.navigateByUrl = jasmine.createSpy("navigateByUrl");
             page.searchBox.triggerEventHandler("keydown.enter", null);
@@ -180,7 +180,7 @@ describe("Breadcrumb Popup Component", () => {
       describe('align popover', () => {
         let obj;
         const alignPopOverToLeft = 'align-popover-to-left';
-        it('should set the alignLeft to true', async(() => {
+        it('should set the alignLeft to true', waitForAsync(() => {
           obj = {clientX:700, clientY: 400};
           triggerClick(obj);
           detectChanges(fixture).then(() => {
@@ -188,7 +188,7 @@ describe("Breadcrumb Popup Component", () => {
             expect(page.popOver.classList).toContain(alignPopOverToLeft);
           });
         }));
-        it('should set the alignLeft to false', async(() => {
+        it('should set the alignLeft to false', waitForAsync(() => {
           obj = {clientX:50, clientY: 40};
           triggerClick(obj);
           detectChanges(fixture).then(() => {
@@ -233,18 +233,18 @@ describe("Breadcrumb Popup Component", () => {
       function getBreadCrumbItem(): Observable<BreadcrumbDropDownItem[]> {
         return observableOf(breadcrumbDropDownItem);
       };
-      beforeEach(async(() => {
+      beforeEach(waitForAsync(() => {
         inputBreadcrumb.getItems = getBreadCrumbItem;
         testCmp.testBreadCrumb = inputBreadcrumb;
         fixture.detectChanges();
       }));
       describe('when the user click on the button', () => {
-        beforeEach(async(() => {
+        beforeEach(waitForAsync(() => {
           click(page.dropDownButton);
           detectChanges(fixture).then(() => {
           });
         }));
-        it('should have text and icon for dynamic links', async(() => {
+        it('should have text and icon for dynamic links', waitForAsync(() => {
           let items = inputBreadcrumb.getItems();
           expect(items instanceof Observable).toBe(true);
           if (items instanceof Observable) {
