@@ -23,7 +23,7 @@ describe("BreadcrumbRoute Popup Component", () => {
   }));
 
   describe('when all search box inputs are supplied', () => {
-    beforeEach(waitForAsync(() => {
+    beforeEach(fakeAsync(() => {
       TestBed.compileComponents().then(() => {
         createComponent();
         input = fixture.debugElement.query(By.css("input")).nativeElement;

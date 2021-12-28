@@ -41,7 +41,7 @@ describe('breadcrumb service', () => {
           ]
         }
       ]
-    } as  ActivatedRoute;
+    } as  any;
     breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
     expect(breadcrumb.length).toBe(0);
   });
@@ -71,7 +71,7 @@ describe('breadcrumb service', () => {
               ]
           }
         ]
-      } as  ActivatedRoute;
+      } as  any;
       breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
       expect(breadcrumb.length).toBe(2);
       expect(breadcrumb[1].breadcrumb.label).toBe('myUrlConfig2');
@@ -108,7 +108,7 @@ describe('breadcrumb service', () => {
                         }
                     }
                 ]
-            } as  ActivatedRoute;
+            } as  any;
             breadcrumb = breadcrumbService.getBreadcrumbs(activatedRoute);
             currBreadcrumb = breadcrumb[0];
           breadcrumbCount = breadcrumb.length;
