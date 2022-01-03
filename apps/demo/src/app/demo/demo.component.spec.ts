@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import {ComponentFixture, fakeAsync, TestBed, waitForAsync} from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import { DemoComponent } from './demo.component';
 
