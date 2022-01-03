@@ -9,6 +9,7 @@ import {RouterLinkStubDirective, RouterStub} from "../breadcrumb/test-utils/rout
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {HighlightCurrentOpenedItemDirective} from "../directive/highlight-current-opened-item.directive";
 
 describe("Breadcrumb Popup Component", () => {
   describe('the UI part', () => {
@@ -30,7 +31,8 @@ describe("Breadcrumb Popup Component", () => {
           TestComponent,
           SearchBoxComponent,
           RouterLinkStubDirective,
-          BreadcrumbPopupComponent
+          BreadcrumbPopupComponent,
+          HighlightCurrentOpenedItemDirective
         ]
       });
     }));
@@ -59,11 +61,9 @@ describe("Breadcrumb Popup Component", () => {
 
       it('should not be visible if there are no items', () => {
         testCmp.testBreadCrumb = inputBreadcrumb;
-        fixture.autoDetectChanges();
-        fixture.whenStable(fixture).then(() => {
-          expect(page.links.length).toBe(0);
-          expect(page.breadcrumbPopupComponent.isShowBreadcrumbDropDown).toBe(undefined);
-        });
+        fixture.detectChanges();
+        expect(page.links.length).toBe(0);
+        expect(page.breadcrumbPopupComponent.isShowBreadcrumbDropDown).toBe(undefined);
       });
     });
     describe('when there is a valid breadcrumbDropDown data as array', () => {
@@ -92,10 +92,10 @@ describe("Breadcrumb Popup Component", () => {
       });
 
       describe('when the user click on the button', () => {
-        beforeEach(waitForAsync(() => {
+        beforeEach(fakeAsync(() => {
           click(page.dropDownButton);
-          detectChanges(fixture).then(() => {
-          })
+          tick(1000);
+          fixture.detectChanges();
         }));
         it('should have a title', () => {
           expect(page.title.indexOf(inputBreadcrumb.popupTitle)).toBeGreaterThan(-1);
@@ -113,7 +113,7 @@ describe("Breadcrumb Popup Component", () => {
           });
         });
 
-        it('should have text and icon for dynamic links', waitForAsync(() => {
+        it('should have text and icon for dynamic links', () => {
           let pos = 0;
           let data = inputBreadcrumb.items;
             page.anchorElements.map(anchor => {
@@ -121,7 +121,7 @@ describe("Breadcrumb Popup Component", () => {
               pos++;
             });
             expect(page.anchorElementsIcons.length).toBe((data as []).length);
-        }));
+        });
 
         describe('when using search box to filter elements', () => {
           beforeEach(() => {
@@ -133,17 +133,16 @@ describe("Breadcrumb Popup Component", () => {
           it('should be bounded to min length', () => {
             expect(page.searchBox.componentInstance.minLength).toBe(0);
           });
-          it('should listen to events from search box', () => {
+          it('should listen to events from search box', fakeAsync(() => {
             let onFilterSpy = spyOn(page.breadcrumbPopupComponent, "onFiltered").and.callThrough();
             let items = inputBreadcrumb.items as BreadcrumbDropDownItem[];
             let event = items.filter(f => f.label.indexOf("first") > -1);
             page.searchBox.triggerEventHandler("results", event);
-            detectChanges(fixture).then(() => {
-              expect(page.links.length).toBe(1);
-              expect(page.links[0].linkParams[0]).toBe(event[0].url);
-              expect(onFilterSpy).toHaveBeenCalled();
-            });
-          });
+            fixture.detectChanges();
+            expect(page.links.length).toBe(1);
+            expect(page.links[0].linkParams[0]).toBe(event[0].url);
+            expect(onFilterSpy).toHaveBeenCalled();
+          }));
           it('should supply search data to the search box', fakeAsync(() => {
             let searchSpy = spyOn(page.breadcrumbPopupComponent, "search").and.callThrough();
             let onFilterSpy = spyOn(page.breadcrumbPopupComponent, "onFiltered").and.callThrough();
@@ -190,7 +189,7 @@ describe("Breadcrumb Popup Component", () => {
         let obj;
         const alignPopOverToLeft = 'align-popover-to-left';
         it('should set the alignLeft to true', fakeAsync(() => {
-          obj = {clientX:700, clientY: 400};
+          obj = {clientX:1400, clientY: 400};
           triggerClick(obj);
           tick(1000);
           fixture.detectChanges();
@@ -243,17 +242,17 @@ describe("Breadcrumb Popup Component", () => {
       function getBreadCrumbItem(): Observable<BreadcrumbDropDownItem[]> {
         return observableOf(breadcrumbDropDownItem);
       };
-      beforeEach(waitForAsync(() => {
+      beforeEach(() => {
         inputBreadcrumb.getItems = getBreadCrumbItem;
         testCmp.testBreadCrumb = inputBreadcrumb;
-      }));
+      });
       describe('when the user click on the button', () => {
-        beforeEach(waitForAsync(() => {
-          detectChanges(fixture).then(() =>{
-            click(page.dropDownButton);
-          })
+        beforeEach(fakeAsync(() => {
+          fixture.detectChanges();
+          tick(1000);
+          click(page.dropDownButton);
         }));
-        it('should have text and icon for dynamic links', waitForAsync(() => {
+        it('should have text and icon for dynamic links', () => {
           let items = inputBreadcrumb.getItems();
           expect(items instanceof Observable).toBe(true);
           if (items instanceof Observable) {
@@ -266,7 +265,7 @@ describe("Breadcrumb Popup Component", () => {
               });
             });
           }
-        }));
+        });
       });
 
     });
