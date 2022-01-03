@@ -1,7 +1,7 @@
 
 import {of as observableOf, Observable} from 'rxjs';
 import {Component, DebugElement, Input} from "@angular/core";
-import { TestBed, ComponentFixture, fakeAsync, tick, waitForAsync } from "@angular/core/testing";
+import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testing";
 import {By} from "@angular/platform-browser";
 import {BreadcrumbPopupComponent} from "./breadcrumb-popup.component";
 import {SearchBoxComponent} from "../searchbox/searchbox.component";
