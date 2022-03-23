@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {ActivatedRoute, ActivatedRouteSnapshot, PRIMARY_OUTLET} from "@angular/router";
 import {BreadcrumbRoute} from "../../common/model/route.model";
 import {Breadcrumb} from "../../common/model/breadcrumb.model";
-import {Subject} from "rxjs/index";
+import {Subject} from "rxjs";
 
 export const BREADCRUMB_DATA_KEY = "breadcrumb";
 

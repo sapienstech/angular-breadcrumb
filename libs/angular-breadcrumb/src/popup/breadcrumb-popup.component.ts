@@ -4,13 +4,14 @@ import {Component, ElementRef, HostListener, Input, ViewChild} from "@angular/co
 import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {BreadcrumbDropDown} from "../common/model/dropdown.model";
 import {BreadcrumbDropDownItem} from "../common/model/dropdown-item.model";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'dcn-breadcrumb-popup',
   styleUrls: ["../breadcrumb/component/breadcrumb.component.less"],
   template: `
 <div class="popover" [ngClass]="{'align-popover-to-left': alignLeft}">
-  <button *ngIf="isShowNextArrow"  
+  <button *ngIf="isShowNextArrow"
           #btn3 aria-label="breadcrumb dropdown"
           [ngClass]="{'menu-button':true, 'has-no-popup':!isShowBreadcrumbDropDown,'has-popup':isShowBreadcrumbDropDown,'is-active':showPopup}" (click)="setInitialFilter($event)">
     <i class="fa fa-angle-right menu-button-icon"></i>
@@ -131,14 +132,13 @@ export class BreadcrumbPopupComponent {
     this.alignPopover(event);
     const items = this.items;
     if (items instanceof Observable) {
-      let subscription = items.subscribe(vals => {
-        this.allItems = vals;
-        this.filteredItems = vals;
-        this.showPopup = !this.showPopup;
-        if (subscription) {
-          subscription.unsubscribe();
+      items.pipe(first()).subscribe(
+        (vals) => {
+          this.allItems = vals;
+          this.filteredItems = vals;
+          this.showPopup = !this.showPopup;
         }
-      })
+      )
     }
     else {
       this.allItems = items;

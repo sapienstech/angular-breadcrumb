@@ -1,13 +1,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "downlevelIteration": true,
     "importHelpers": true,
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -21,7 +21,7 @@
         "libs/angular-breadcrumb"
       ]
     },
-    "module": "es2015"
+    "module": "es2020"
   },
   "exclude": [
     "node_modules",

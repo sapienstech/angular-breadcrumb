@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing';
 
 import { DemoComponent } from './demo.component';
 
@@ -9,7 +7,7 @@ xdescribe('DemoComponent', () => {
   let component: DemoComponent;
   let fixture: ComponentFixture<DemoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DemoComponent ]
     })

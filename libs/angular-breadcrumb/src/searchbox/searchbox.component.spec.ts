@@ -1,6 +1,6 @@
 
 import {of as observableOf, Observable} from 'rxjs';
-import {TestBed, async, ComponentFixture, fakeAsync, tick} from "@angular/core/testing";
+import { TestBed, ComponentFixture, fakeAsync, tick } from "@angular/core/testing";
 import {Component} from "@angular/core";
 import {By} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
@@ -10,7 +10,7 @@ describe("BreadcrumbRoute Popup Component", () => {
   let fixture: ComponentFixture<TestComponent>;
   let testCmp;
   let input: HTMLInputElement;
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         CommonModule
@@ -20,10 +20,10 @@ describe("BreadcrumbRoute Popup Component", () => {
         TestComponent, SearchBoxComponent
       ]
     });
-  }));
+  });
 
   describe('when all search box inputs are supplied', () => {
-    beforeEach(async(() => {
+    beforeEach(fakeAsync(() => {
       TestBed.compileComponents().then(() => {
         createComponent();
         input = fixture.debugElement.query(By.css("input")).nativeElement;
@@ -56,7 +56,7 @@ describe("BreadcrumbRoute Popup Component", () => {
   });
   describe('when there is no input for search data function', () => {
 
-    beforeEach(async(() => {
+    beforeEach(fakeAsync(() => {
       TestBed.overrideComponent(TestComponent, {
         set: {
           template: `<dcn-search-box *ngIf="keepMeAlive"
