@@ -12,14 +12,15 @@ describe("BreadcrumbRoute Popup Component", () => {
   let input: HTMLInputElement;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         CommonModule
-      ],
-      providers: [],
-      declarations: [
+    ],
+    providers: [],
+    declarations: [
         TestComponent, SearchBoxComponent
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
   });
 
   describe('when all search box inputs are supplied', () => {

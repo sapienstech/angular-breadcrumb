@@ -39,9 +39,10 @@ describe('HighlightCurrentOpenedItemDirective', () => {
                        </a>
                     </div>`;
       TestBed.configureTestingModule({
-        declarations: [TestComponent, HighlightCurrentOpenedItemDirective],
-        providers: []
-      });
+    declarations: [TestComponent, HighlightCurrentOpenedItemDirective],
+    providers: [],
+    teardown: { destroyAfterEach: false }
+});
       TestBed.overrideComponent(TestComponent, {set: {template: `${template}`}});
     }));
     beforeEach(fakeAsync(() => {

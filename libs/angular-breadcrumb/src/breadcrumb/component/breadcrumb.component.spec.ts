@@ -19,19 +19,20 @@ describe("breadcrumbComponent", () => {
   let router;
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      providers: [
+    providers: [
         BreadcrumbService,
-        {provide: Router, useClass: RouterStub},
-        {provide: ActivatedRoute, useClass: ActivatedRouteStub}
-      ],
-      declarations: [
+        { provide: Router, useClass: RouterStub },
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub }
+    ],
+    declarations: [
         RoutingComponent,
         RouterLinkStubDirective,
         RouterOutletStubComponent,
         BreadcrumbComponent,
         BreadcrumbPopupStubComponent
-      ]
-    });
+    ],
+    teardown: { destroyAfterEach: false }
+});
   }));
 
   describe(`when breadcrumb hasRoutes indicator`, () => {

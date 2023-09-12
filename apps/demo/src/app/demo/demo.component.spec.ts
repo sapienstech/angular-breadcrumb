@@ -9,8 +9,9 @@ xdescribe('DemoComponent', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DemoComponent ]
-    })
+    declarations: [DemoComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

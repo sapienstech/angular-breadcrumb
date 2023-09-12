@@ -23,18 +23,19 @@ describe("Breadcrumb Popup Component", () => {
     beforeEach(fakeAsync(() => {
       inputBreadcrumb = buildBreadcrumbs("url1", undefined);
       TestBed.configureTestingModule({
-        imports: [],
-        providers: [
-          {provide: Router, useClass: RouterStub},
-        ],
-        declarations: [
-          TestComponent,
-          SearchBoxComponent,
-          RouterLinkStubDirective,
-          BreadcrumbPopupComponent,
-          HighlightCurrentOpenedItemDirective
-        ]
-      });
+    imports: [],
+    providers: [
+        { provide: Router, useClass: RouterStub },
+    ],
+    declarations: [
+        TestComponent,
+        SearchBoxComponent,
+        RouterLinkStubDirective,
+        BreadcrumbPopupComponent,
+        HighlightCurrentOpenedItemDirective
+    ],
+    teardown: { destroyAfterEach: false }
+});
     }));
 
     beforeEach(fakeAsync(() => {
