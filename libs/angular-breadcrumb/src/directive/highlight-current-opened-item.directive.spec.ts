@@ -1,5 +1,5 @@
 import {HighlightCurrentOpenedItemDirective} from './highlight-current-opened-item.directive';
-import {ComponentFixture, fakeAsync, getTestBed, TestBed} from "@angular/core/testing";
+import {ComponentFixture, fakeAsync, getTestBed, TestBed, tick} from "@angular/core/testing";
 import {Component} from "@angular/core";
 import {BreadcrumbDropDownItem} from "angular-breadcrumb";
 import {By} from '@angular/platform-browser';
@@ -41,7 +41,6 @@ describe('HighlightCurrentOpenedItemDirective', () => {
       TestBed.configureTestingModule({
     declarations: [TestComponent, HighlightCurrentOpenedItemDirective],
     providers: [],
-    teardown: { destroyAfterEach: false }
 });
       TestBed.overrideComponent(TestComponent, {set: {template: `${template}`}});
     }));
